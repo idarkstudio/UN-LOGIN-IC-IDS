@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "ids-website-backend": {
+      "main": "src/ids-website-backend/main.mo",
+      "type": "motoko"
+    },
+    "ids-website-frontend": {
+      "dependencies": [
+        "ids-website-backend"
+      ],
+      "source": [
+        "src/ids-website-frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "ids-website-frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
