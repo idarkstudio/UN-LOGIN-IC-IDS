@@ -1,7 +1,7 @@
 {
   "canisters": {
     "ids-website-backend": {
-      "main": "src/ids-website-backend/main.mo",
+      "main": "src/backend/main.mo",
       "type": "motoko"
     },
     "ids-website-frontend": {
@@ -9,7 +9,7 @@
         "ids-website-backend"
       ],
       "source": [
-        "src/ids-website-frontend/dist"
+        "src/frontend/dist"
       ],
       "type": "assets",
       "workspace": "ids-website-frontend"
