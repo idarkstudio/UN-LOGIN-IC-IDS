@@ -165,17 +165,10 @@ const Footer = () => {
         <div className="border-t border-red-900 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center text-gray-400 text-sm mb-4 md:mb-0">
-              <span>© 2025. {t("footer.built")} </span>
+              <span>
+                © {new Date().getFullYear()}. {t("footer.built")}{" "}
+              </span>
               <Heart className="w-4 h-4 mx-1 text-red-400" />
-              <span> using </span>
-              <a
-                href="https://caffeine.ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-red-500 hover:text-red-400 transition-colors ml-1"
-              >
-                caffeine.ai
-              </a>
             </div>
 
             <div className="flex items-center space-x-6 text-gray-400 text-sm">
