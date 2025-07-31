@@ -2,9 +2,11 @@ import { AlertCircle, CheckCircle, ExternalLink, Mail, MessageCircle, Send } fro
 import React, { useContext, useState } from "react";
 
 import { LanguageContext } from "../App";
+import { send } from "@emailjs/browser";
 
 const Contact = () => {
   const { t } = useContext(LanguageContext);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,7 +14,23 @@ const Contact = () => {
   });
 
   // const submitContactForm = useSubmitContactForm();
-  const submitContactForm = () => {};
+  const submitContactForm = async () => {
+    const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    setLoading(true);
+
+    try {
+      const res = await send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formData, EMAILJS_PUBLIC_KEY);
+
+      if (res?.status !== 200) throw new Error(res.text);
+
+      setFormData({ name: "", email: "", message: "", isSubmitting: false });
+    } catch (err) {
+      console.error("Error submitting contact form:", err);
+    }
+    setLoading(false);
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,7 +44,7 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      await submitContactForm.mutateAsync(formData);
+      await submitContactForm(formData);
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("Form submission error:", error);
@@ -35,27 +53,27 @@ const Contact = () => {
 
   const socialLinks = [
     {
-      name: "Twitter",
-      url: "https://twitter.com/idarkstudio",
-      icon: "🐦",
+      name: "X",
+      url: "https://x.com/idarkstudio",
+      icon: "/images/rrss/x.png",
       handle: "@idarkstudio",
     },
     {
       name: "Discord",
-      url: "https://discord.gg/idarkstudio",
-      icon: "💬",
+      url: "https://discord.gg/zHez7fUBE8",
+      icon: "/images/rrss/ds.png",
       handle: "Join our Discord",
     },
-    {
-      name: "Telegram",
-      url: "https://t.me/idarkstudio",
-      icon: "📱",
-      handle: "@idarkstudio",
-    },
+    // {
+    //   name: "Telegram",
+    //   url: "https://t.me/idarkstudio",
+    //   icon: "/images/rrss/tg.png",
+    //   handle: "@idarkstudio",
+    // },
     {
       name: "LinkedIn",
-      url: "https://linkedin.com/company/idarkstudio",
-      icon: "💼",
+      url: "https://www.linkedin.com/company/inside-dark-studio",
+      icon: "/images/rrss/in.png",
       handle: "Inside Dark Studio",
     },
   ];
@@ -72,7 +90,7 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-red-900">
+          <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-red-900 h-full">
             <div className="flex items-center mb-6">
               <MessageCircle className="w-6 h-6 text-red-500 mr-3" />
               <h3 className="text-2xl font-bold text-white">Send us a message</h3>
@@ -132,10 +150,10 @@ const Contact = () => {
 
               <button
                 type="submit"
-                disabled={submitContactForm.isPending}
+                disabled={loading}
                 className="w-full flex items-center justify-center px-6 py-3 bg-gradient-to-r from-red-600 to-red-800 text-white rounded-lg hover:from-red-700 hover:to-red-900 transition-all duration-300 transform hover:scale-105 hover:shadow-red-glow border border-red-500 hover:border-red-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:hover:shadow-none"
               >
-                {submitContactForm.isPending ? (
+                {loading ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2" />
                     Sending...
@@ -218,7 +236,8 @@ const Contact = () => {
                     rel="noopener noreferrer"
                     className="group flex items-center p-4 bg-black/50 rounded-lg border border-red-900 hover:border-red-500 transition-all duration-300 transform hover:scale-105 hover:shadow-red-glow"
                   >
-                    <span className="text-2xl mr-3">{social.icon}</span>
+                    {/* <span className="text-2xl mr-3">{social.icon}</span> */}
+                    <img src={social.icon} alt={social.name} className="h-6 mr-3" />
                     <div>
                       <div className="text-white font-medium group-hover:text-red-300 transition-colors">
                         {social.name}
@@ -230,33 +249,32 @@ const Contact = () => {
                 ))}
               </div>
             </div>
-
-            {/* Community */}
-            <div className="bg-gradient-to-r from-red-900/20 to-red-800/20 backdrop-blur-sm rounded-2xl p-8 border border-red-700">
-              <h3 className="text-2xl font-bold text-red-500 mb-4">Join Our Community</h3>
-              <p className="text-gray-300 mb-6">
-                Be part of the revolution in Web3 gaming. Connect with developers, players, and
-                enthusiasts from around Latin America and beyond.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="https://discord.gg/idarkstudio"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center px-4 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-all duration-300 hover:shadow-red-glow border border-red-500 hover:border-red-400"
-                >
-                  💬 Join Discord
-                </a>
-                <a
-                  href="https://t.me/idarkstudio"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center px-4 py-3 bg-red-700 hover:bg-red-800 text-white rounded-lg transition-all duration-300 hover:shadow-red-glow border border-red-600 hover:border-red-500"
-                >
-                  📱 Join Telegram
-                </a>
-              </div>
-            </div>
+          </div>
+        </div>
+        {/* Community */}
+        <div className="bg-gradient-to-r from-red-900/20 to-red-800/20 backdrop-blur-sm rounded-2xl p-8 border border-red-700 w-full mt-8">
+          <h3 className="text-2xl font-bold text-red-500 mb-4">Join Our Community</h3>
+          <p className="text-gray-300 mb-6">
+            Be part of the revolution in Web3 gaming. Connect with developers, players, and
+            enthusiasts from around Latin America and beyond.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href="https://discord.gg/zHez7fUBE8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center px-4 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-all duration-300 hover:shadow-red-glow border border-red-500 hover:border-red-400"
+            >
+              Join Discord
+            </a>
+            {/* <a
+              href="https://t.me/idarkstudio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center px-4 py-3 bg-red-700 hover:bg-red-800 text-white rounded-lg transition-all duration-300 hover:shadow-red-glow border border-red-600 hover:border-red-500"
+            >
+              Join Telegram
+            </a> */}
           </div>
         </div>
       </div>

@@ -69,14 +69,14 @@ const translations = {
 
     // Contact
     "contact.title": "Join the Dark Side",
-    "contact.subtitle": "Ready to explore the universe?",
+    "contact.subtitle": "Contact the Inside Dark",
     "contact.name": "Name",
     "contact.email": "Email",
     "contact.message": "Message",
     "contact.send": "Send Message",
 
     // Footer
-    "footer.built": "Built with love using",
+    "footer.built": "Copyright - Inside Dark Studio",
   },
   es: {
     // Navigation
@@ -141,7 +141,7 @@ const translations = {
     "contact.send": "Enviar Mensaje",
 
     // Footer
-    "footer.built": "Construido con amor usando",
+    "footer.built": "Copyright - Inside Dark Studio",
   },
 };
 
@@ -200,7 +200,7 @@ function App() {
               <About />
               <ROMUniverse />
               <Token />
-              <Roadmap />
+              {/* <Roadmap /> */}
               <Contact />
               <Footer />
             </>

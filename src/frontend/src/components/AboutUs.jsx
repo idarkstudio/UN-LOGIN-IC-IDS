@@ -19,36 +19,31 @@ const AboutUs = () => {
       role: "CEO",
       description:
         "Visionary leader with extensive experience in Web3 gaming and blockchain technology",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
+      image: "/images/team/stoll.png",
     },
     {
       name: "Francisca Morales",
       role: "CCO",
       description: "Creative strategist driving innovative content and community engagement",
-      image:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face",
+      image: "/images/team/fran.png",
     },
     {
       name: "Francisco Rappazzini",
       role: "CTO",
       description: "Technical architect behind our cutting-edge blockchain infrastructure",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+      image: "/images/team/rappa.png",
     },
     {
       name: "Lautaro Prado",
       role: "Game Dev Manager",
       description: "Leading game development with expertise from top-tier gaming studios",
-      image:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face",
+      image: "/images/team/lauti.jpg",
     },
     {
       name: "Lucía Mamud",
       role: "Art Manager",
       description: "Creative director shaping the visual identity of our gaming universe",
-      image:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
+      image: "/images/team/lu.png",
     },
   ];
 
@@ -96,7 +91,7 @@ const AboutUs = () => {
       </section>
 
       {/* Team Overview Section */}
-      <section className="py-20 bg-gray-900">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
@@ -128,7 +123,7 @@ const AboutUs = () => {
 
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop"
+                src="/images/personajes completo.png"
                 alt="Team collaboration"
                 className="w-full h-80 object-cover rounded-2xl border border-red-900"
               />
@@ -164,11 +159,13 @@ const AboutUs = () => {
                 className="group bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-red-900 hover:border-red-500 transition-all duration-300 transform hover:scale-105 hover:shadow-red-glow"
               >
                 <div className="relative mb-6">
-                  <img
-                    src={leader.image}
-                    alt={leader.name}
-                    className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-red-900 group-hover:border-red-500 transition-colors duration-300"
-                  />
+                  <div className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-red-900 group-hover:border-red-500 transition-colors duration-300">
+                    <img
+                      src={leader.image}
+                      alt={leader.name}
+                      className="w-full h-full rounded-full object-cover grayscale"
+                    />
+                  </div>
                   <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-red-600 to-red-800 rounded-full flex items-center justify-center">
                     <ChevronRight className="w-4 h-4 text-white" />
                   </div>

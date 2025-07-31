@@ -23,9 +23,9 @@ const ROMUniverse = () => {
     {
       name: "Exploring Vilintrius",
       description:
-        "Venture into the mystical realm of Vilintrius, where ancient secrets lie buried beneath ethereal landscapes and reality bends to the will of forgotten magic.",
-      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop",
-      genre: "Mystical Exploration",
+        "2D dungeon crawler game where the player, as rick,navigates a mysterious temple, uncovering its secrets while trying to survive and escape.",
+      image: "/images/vilintrius.png",
+      genre: "Dungeon Crawler",
       icon: <Sparkles className="w-6 h-6" />,
       narrative:
         "The gateway to understanding the deeper mysteries of the ROM Universe begins here.",
@@ -34,9 +34,9 @@ const ROMUniverse = () => {
     {
       name: "The Battle for Zhion",
       description:
-        "Command vast armies across the war-torn dimensions of Zhion, where strategic mastery determines the fate of entire civilizations and the balance of cosmic power.",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
-      genre: "Epic Strategy",
+        "FPS game join the forces in the battlefield, zhion is still at war and all the factions trying to control their land, battle royale mode, and all the classic modes for this one​.",
+      image: "/images/tbfz.png",
+      genre: "FPS",
       icon: <Shield className="w-6 h-6" />,
       narrative:
         "The eternal conflict that shapes the very foundations of reality across all realms.",
@@ -45,9 +45,9 @@ const ROMUniverse = () => {
     {
       name: "BitRoyale",
       description:
-        "Survive in the digital wasteland where code becomes flesh and algorithms hunt the unwary. Only the most cunning will emerge from this cybernetic nightmare.",
-      image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=300&fit=crop",
-      genre: "Digital Survival",
+        "Turn-based, tabletop-inspired game where slot mechanics meet tactical decision-making. Players compete in strategic rounds powered by a dynamic slot machine system that determines actions, outcomes and power-ups.",
+      image: "/images/bit.png",
+      genre: "Turn-Based Strategy",
       icon: <Zap className="w-6 h-6" />,
       narrative: "Where the boundaries between digital and physical reality dissolve into chaos.",
       color: "from-cyan-500 to-blue-700",
@@ -55,9 +55,9 @@ const ROMUniverse = () => {
     {
       name: "The Heroes Supremacy",
       description:
-        "Ascend to legendary status as champions clash in arenas where gods once walked. Each victory brings you closer to ultimate supremacy over destiny itself.",
-      image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=300&fit=crop",
-      genre: "Legendary Combat",
+        "MOBA style game, with a little changes of game style and a few game modes, including anrts, classic deathmatch, team deathmatch, capture the flag and a few others.",
+      image: "/images/ths.png",
+      genre: "MOBA",
       icon: <Crown className="w-6 h-6" />,
       narrative: "The proving ground where mortals transcend their limitations to become legends.",
       color: "from-yellow-500 to-amber-700",
@@ -65,9 +65,9 @@ const ROMUniverse = () => {
     {
       name: "Vetirent Magic Cards",
       description:
-        "Master the arcane arts through mystical card battles where each spell cast reshapes reality and every duel determines the flow of magical energy across dimensions.",
-      image: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400&h=300&fit=crop",
-      genre: "Arcane Strategy",
+        "Card game play with forces of the unknown and discover some new magic styles inside this cards, all the nfts from the universe are cards.​",
+      image: "/images/vetirent.png",
+      genre: "Card Game",
       icon: <Wand2 className="w-6 h-6" />,
       narrative: "The ancient art of Vetirent magic, channeled through mystical card mastery.",
       color: "from-emerald-500 to-teal-700",
@@ -75,9 +75,9 @@ const ROMUniverse = () => {
     {
       name: "The Player Fortress",
       description:
-        "Construct impregnable strongholds that stand as bastions against the encroaching darkness. Your fortress becomes the last hope for civilization's survival.",
-      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop",
-      genre: "Fortress Defense",
+        "Each player will get their own dimension where they can build anything they want and welcome their own fortress in the metaverse where everything is decided by them​.",
+      image: "/images/fortress.png",
+      genre: "Player Fortress",
       icon: <Castle className="w-6 h-6" />,
       narrative: "Sanctuaries of hope built to withstand the storms of an uncertain multiverse.",
       color: "from-stone-500 to-gray-700",
@@ -85,9 +85,9 @@ const ROMUniverse = () => {
     {
       name: "The Search for Vetirents",
       description:
-        "Embark on a perilous quest to uncover the lost Vetirents, ancient artifacts of immense power that hold the key to understanding the true nature of existence.",
-      image: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=400&h=300&fit=crop",
-      genre: "Mystical Quest",
+        "Turn base game, explore what happened after the great release, and try to find there manence of vetirent’s scatter around the multiverse​.",
+      image: "/images/vetirents.png",
+      genre: "RPGMMO",
       icon: <Search className="w-6 h-6" />,
       narrative: "The eternal search for artifacts that bridge the gap between mortal and divine.",
       color: "from-violet-500 to-purple-700",
@@ -96,7 +96,7 @@ const ROMUniverse = () => {
       name: "The Release of Madness",
       description:
         "Descend into the psychological abyss where sanity becomes currency and madness reveals hidden truths. Face the darkness within to emerge transformed.",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+      image: "/images/rom.png",
       genre: "Psychological Horror",
       icon: <Skull className="w-6 h-6" />,
       narrative:
@@ -123,9 +123,12 @@ const ROMUniverse = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
+          {/* <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
             {t("rom.title")}
-          </h2>
+          </h2> */}
+          <div className="grid place-items-center">
+            <img src="/images/rom-universe.png" alt="ROM Universe" className="h-32 mb-8" />
+          </div>
           <div className="max-w-4xl mx-auto">
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
               Enter a mystical multiverse where eight interconnected realms weave together the
@@ -320,11 +323,12 @@ const ROMUniverse = () => {
             <div className="max-w-4xl mx-auto">
               <h3 className="text-3xl font-bold mb-6 text-red-500">The Eternal Cycle</h3>
               <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                In the ROM Universe, every ending becomes a beginning, every defeat seeds future
-                victory, and every player's journey contributes to an ever-expanding mythology. The
-                Vetirents—ancient artifacts of unimaginable power—serve as the connecting thread
-                that binds all realms together, their influence felt across every dimension, every
-                battle, every quest for truth.
+                In the ROM Universe, every ending marks a new beginning, every defeat plants the
+                seeds of future triumph, and every journey expands a living mythology. The
+                Vetirents—an ancient race of unimaginable power—act as the silent architects of
+                destiny, weaving together realms and timelines. Their legacy—through relics,
+                knowledge, and forgotten truths—echoes across every dimension, every battle, every
+                quest for meaning.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
@@ -334,8 +338,9 @@ const ROMUniverse = () => {
                   </div>
                   <h4 className="text-xl font-semibold text-white mb-2">Mystical Connections</h4>
                   <p className="text-gray-400 text-sm">
-                    Actions in one realm ripple across all others, creating a living, breathing
-                    multiverse
+                    Your NFTs transcend individual games. Whether characters, relics, or
+                    achievements, they carry over across all ROM experiences—your legend lives on,
+                    no matter the world you enter.
                   </p>
                 </div>
 
@@ -343,10 +348,11 @@ const ROMUniverse = () => {
                   <div className="w-16 h-16 bg-gradient-to-r from-red-600 to-red-800 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Crown className="w-8 h-8 text-white" />
                   </div>
-                  <h4 className="text-xl font-semibold text-white mb-2">Legendary Artifacts</h4>
+                  <h4 className="text-xl font-semibold text-white mb-2">Forgotten Relics</h4>
                   <p className="text-gray-400 text-sm">
-                    The Vetirents transcend individual games, becoming keys to universal
-                    understanding
+                    The artifacts left behind by the Vetirents are more than ancient treasures. They
+                    hold fragments of primal knowledge, keys to unlocking the hidden truths of the
+                    ROM Universe.
                   </p>
                 </div>
 
@@ -356,8 +362,8 @@ const ROMUniverse = () => {
                   </div>
                   <h4 className="text-xl font-semibold text-white mb-2">Evolving Narrative</h4>
                   <p className="text-gray-400 text-sm">
-                    Player choices shape not just individual stories, but the destiny of the entire
-                    universe
+                    Every choice you make ripples through time. Your actions shape not just one
+                    story, but the evolving destiny of an entire multiverse built around you.
                   </p>
                 </div>
               </div>

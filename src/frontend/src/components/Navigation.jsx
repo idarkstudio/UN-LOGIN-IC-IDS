@@ -42,8 +42,8 @@ const Navigation = () => {
   const navItems = [
     { key: "about", section: "about" },
     { key: "games", section: "rom-universe" },
-    { key: "token", section: "token" },
-    { key: "roadmap", section: "roadmap" },
+    // { key: "token", section: "token" },
+    // { key: "roadmap", section: "roadmap" },
     { key: "contact", section: "contact" },
   ];
 
@@ -53,12 +53,12 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <button
+            <img
+              src="/images/ids.png"
+              alt="Inside Dark Studio"
+              className="h-16"
               onClick={handleLogoClick}
-              className="text-2xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent hover:from-red-400 hover:to-red-600 transition-all duration-300"
-            >
-              IDS
-            </button>
+            />
           </div>
 
           {/* Desktop Navigation */}

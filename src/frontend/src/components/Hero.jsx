@@ -4,6 +4,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { ChevronDown, Minus, Plus, Settings } from "lucide-react";
 import React, { useContext, useEffect, useRef, useState } from "react";
 
+import ImageSequence from "./ImageSequence";
 import { LanguageContext } from "../App";
 
 // Speed control component
@@ -573,8 +574,8 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Three.js Canvas Background - immediately visible */}
-      <div className="absolute inset-0 z-0">
-        <Canvas
+      {/* <div className="absolute inset-0 z-0"> */}
+      {/* <Canvas
           camera={{ position: [0, 0, 15], fov: 75 }}
           style={{ background: "#000000" }}
           dpr={[1, 2]}
@@ -587,11 +588,17 @@ const Hero = () => {
         >
           <PortalAnimation speed={animationSpeed} />
           <CameraController speed={animationSpeed} />
-        </Canvas>
+        </Canvas> */}
+      <div className="absolute inset-0 w-full object-cover z-10 grid place-items-center">
+        <img src="/darkirina.gif" alt="Darkirina" className="h-full" />
       </div>
+      <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted>
+        <source src="/background.mp4" type="video/mp4" />
+      </video>
+      {/* </div> */}
 
       {/* Speed Control */}
-      <SpeedControl speed={animationSpeed} onSpeedChange={setAnimationSpeed} />
+      {/* <SpeedControl speed={animationSpeed} onSpeedChange={setAnimationSpeed} /> */}
 
       {/* Lighter overlay gradient for better text readability while keeping portal visible */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50 z-10" />
@@ -600,7 +607,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/20 z-10" />
 
       {/* Content */}
-      <div className="relative z-20 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <div className="relative z-20 text-center px-4 sm:px-6 lg:px-8 w-full mx-auto">
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 mystical-title-entrance drop-shadow-2xl text-shadow-red">
           {t("hero.title")}
         </h1>

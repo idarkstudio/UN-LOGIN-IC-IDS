@@ -37,10 +37,10 @@ const Footer = () => {
     community: {
       title: "Community",
       links: [
-        { name: "Discord", href: "https://discord.gg/idarkstudio" },
+        { name: "Discord", href: "https://discord.gg/zHez7fUBE8" },
         { name: "Twitter", href: "https://twitter.com/idarkstudio" },
-        { name: "Telegram", href: "https://t.me/idarkstudio" },
-        { name: "LinkedIn", href: "https://linkedin.com/company/idarkstudio" },
+        // { name: "Telegram", href: "https://t.me/idarkstudio" },
+        { name: "LinkedIn", href: "https://www.linkedin.com/company/inside-dark-studio/" },
       ],
     },
   };
@@ -57,9 +57,10 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center mb-4">
-              <div className="text-3xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
+              {/* <div className="text-3xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
                 IDS
-              </div>
+              </div> */}
+              <img src="/images/ids.png" alt="Inside Dark Studio" className="h-16" />
             </div>
             <p className="text-gray-400 text-sm mb-4">
               Latin America's premier Web3 game studio creating fully on-chain gaming experiences.
@@ -71,31 +72,31 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-red-500 transition-colors"
               >
-                🐦
+                <img src="/images/rrss/x.png" alt="X" className="h-6" />
               </a>
               <a
-                href="https://discord.gg/idarkstudio"
+                href="https://discord.gg/zHez7fUBE8"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-red-500 transition-colors"
               >
-                💬
+                <img src="/images/rrss/ds.png" alt="Discord" className="h-6" />
               </a>
-              <a
+              {/* <a
                 href="https://t.me/idarkstudio"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-red-500 transition-colors"
               >
-                📱
-              </a>
+                <img src="/images/rrss/tg.png" alt="Telegram" className="h-6" />
+              </a> */}
               <a
-                href="https://linkedin.com/company/idarkstudio"
+                href="https://www.linkedin.com/company/inside-dark-studio/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-red-500 transition-colors"
               >
-                💼
+                <img src="/images/rrss/in.png" alt="LinkedIn" className="h-6" />
               </a>
             </div>
           </div>
@@ -142,7 +143,7 @@ const Footer = () => {
         </div>
 
         {/* Newsletter Signup */}
-        <div className="border-t border-red-900 pt-8 mb-8">
+        {/* <div className="border-t border-red-900 pt-8 mb-8">
           <div className="max-w-md mx-auto text-center">
             <h3 className="text-white font-semibold mb-2">Stay Updated</h3>
             <p className="text-gray-400 text-sm mb-4">
@@ -159,7 +160,7 @@ const Footer = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Bottom Footer */}
         <div className="border-t border-red-900 pt-8">
@@ -168,7 +169,6 @@ const Footer = () => {
               <span>
                 © {new Date().getFullYear()}. {t("footer.built")}{" "}
               </span>
-              <Heart className="w-4 h-4 mx-1 text-red-400" />
             </div>
 
             <div className="flex items-center space-x-6 text-gray-400 text-sm">

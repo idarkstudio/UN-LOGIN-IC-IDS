@@ -157,13 +157,14 @@ const Token = () => {
   ];
 
   return (
-    <section id="token" className="py-20 bg-gray-900">
+    <section id="token" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center mb-6">
-            <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-700 rounded-full flex items-center justify-center mr-4">
+            {/* <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-700 rounded-full flex items-center justify-center mr-4">
               <Coins className="w-8 h-8 text-white" />
-            </div>
+            </div> */}
+            <img src="/images/agld.png" alt="Ancient Gold Token" className="w-16 h-16 mr-4" />
             <div>
               <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
                 {t("token.title")}
@@ -222,7 +223,7 @@ const Token = () => {
           </div>
 
           {/* Release Details */}
-          <div className="bg-gradient-to-r from-red-900/20 to-red-800/20 backdrop-blur-sm rounded-2xl p-8 border border-red-700 mb-12">
+          {/* <div className="bg-gradient-to-r from-red-900/20 to-red-800/20 backdrop-blur-sm rounded-2xl p-8 border border-red-700 mb-12">
             <h4 className="text-2xl font-bold text-center mb-8 text-red-500">
               Release Information
             </h4>
@@ -283,7 +284,7 @@ const Token = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Rarity System */}
           <div className="mb-12">
