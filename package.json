@@ -13,6 +13,6 @@
   },
   "type": "module",
   "workspaces": [
-    "src/ids-website-caffeine-frontend"
+    "src/frontend"
   ]
 }

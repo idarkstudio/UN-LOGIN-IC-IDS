@@ -1,18 +1,14 @@
 {
   "canisters": {
-    "ids-website-caffeine-backend": {
-      "main": "src/ids-website-caffeine-backend/main.mo",
+    "backend": {
+      "main": "src/backend/main.mo",
       "type": "motoko"
     },
-    "ids-website-caffeine-frontend": {
-      "dependencies": [
-        "ids-website-caffeine-backend"
-      ],
-      "source": [
-        "src/ids-website-caffeine-frontend/dist"
-      ],
+    "frontend": {
+      "dependencies": ["backend"],
+      "source": ["src/frontend/dist"],
       "type": "assets",
-      "workspace": "ids-website-caffeine-frontend"
+      "workspace": "frontend"
     }
   },
   "defaults": {
