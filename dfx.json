@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "ids-website-caffeine-backend": {
+      "main": "src/ids-website-caffeine-backend/main.mo",
+      "type": "motoko"
+    },
+    "ids-website-caffeine-frontend": {
+      "dependencies": [
+        "ids-website-caffeine-backend"
+      ],
+      "source": [
+        "src/ids-website-caffeine-frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "ids-website-caffeine-frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
