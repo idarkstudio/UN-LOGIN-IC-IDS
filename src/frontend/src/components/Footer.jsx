@@ -1,6 +1,7 @@
-import { ExternalLink, Heart } from "lucide-react";
+import { DiscordIcon, LinkedinIcon, XIcon } from "../utils/svgs";
 import React, { useContext } from "react";
 
+import { ExternalLink } from "lucide-react";
 import { LanguageContext } from "../App";
 
 const Footer = () => {
@@ -11,34 +12,34 @@ const Footer = () => {
       title: "Company",
       links: [
         { name: "About Us", href: "#about" },
-        { name: "Roadmap", href: "#roadmap" },
-        { name: "Careers", href: "#" },
-        { name: "Press Kit", href: "#" },
+        // { name: "Roadmap", href: "#roadmap" },
+        // { name: "Careers", href: "#" },
+        // { name: "Press Kit", href: "#" },
       ],
     },
     games: {
       title: "Games",
       links: [
         { name: "ROM Universe", href: "#rom-universe" },
-        { name: "Dark Realms", href: "#" },
-        { name: "Cyber Nexus", href: "#" },
-        { name: "Mystic Cards", href: "#" },
+        // { name: "Dark Realms", href: "#" },
+        // { name: "Cyber Nexus", href: "#" },
+        // { name: "Mystic Cards", href: "#" },
       ],
     },
-    resources: {
-      title: "Resources",
-      links: [
-        { name: "Documentation", href: "#" },
-        { name: "KernNetz SDK", href: "#" },
-        { name: "Developer Portal", href: "#" },
-        { name: "API Reference", href: "#" },
-      ],
-    },
+    // resources: {
+    //   title: "Resources",
+    //   links: [
+    //     { name: "Documentation", href: "#" },
+    //     { name: "KernNetz SDK", href: "#" },
+    //     { name: "Developer Portal", href: "#" },
+    //     { name: "API Reference", href: "#" },
+    //   ],
+    // },
     community: {
       title: "Community",
       links: [
         { name: "Discord", href: "https://discord.gg/zHez7fUBE8" },
-        { name: "Twitter", href: "https://twitter.com/idarkstudio" },
+        { name: "X", href: "https://twitter.com/idarkstudio" },
         // { name: "Telegram", href: "https://t.me/idarkstudio" },
         { name: "LinkedIn", href: "https://www.linkedin.com/company/inside-dark-studio/" },
       ],
@@ -72,15 +73,15 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-red-500 transition-colors"
               >
-                <img src="/images/rrss/x.png" alt="X" className="h-6" />
+                <XIcon className="w-6" />
               </a>
               <a
                 href="https://discord.gg/zHez7fUBE8"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-red-500 transition-colors"
+                className="text-gray-400 hover:text-red-500 transition-colors grid place-items-center"
               >
-                <img src="/images/rrss/ds.png" alt="Discord" className="h-6" />
+                <DiscordIcon className="w-6" />
               </a>
               {/* <a
                 href="https://t.me/idarkstudio"
@@ -96,7 +97,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-red-500 transition-colors"
               >
-                <img src="/images/rrss/in.png" alt="LinkedIn" className="h-6" />
+                <LinkedinIcon className="w-6" />
               </a>
             </div>
           </div>

@@ -166,7 +166,7 @@ const Token = () => {
             </div> */}
             <img src="/images/agld.png" alt="Ancient Gold Token" className="w-16 h-16 mr-4" />
             <div>
-              <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
+              <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent font-cinzel">
                 {t("token.title")}
               </h2>
             </div>

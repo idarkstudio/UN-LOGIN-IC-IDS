@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap");
 
 * {
   margin: 0;
@@ -155,7 +156,7 @@ select:focus {
 nav a:hover,
 nav button:hover {
   text-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
-  color: #ef4444;
+  // color: #ef4444;
 }
 
 /* Custom gradient backgrounds */
@@ -292,7 +293,7 @@ nav button:hover {
 }
 
 .mystical-title-entrance {
-  background: linear-gradient(45deg, #ff4444, #ffffff, #ff6666, #ffffff, #ff4444);
+  background: linear-gradient(45deg, #ff4444, #b36363, #ff6666, #b36363, #ff4444);
   background-size: 400% 400%;
   background-clip: text;
   -webkit-background-clip: text;

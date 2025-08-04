@@ -1,4 +1,5 @@
 import { AlertCircle, CheckCircle, ExternalLink, Mail, MessageCircle, Send } from "lucide-react";
+import { DiscordIcon, LinkedinIcon, XIcon } from "../utils/svgs";
 import React, { useContext, useState } from "react";
 
 import { LanguageContext } from "../App";
@@ -55,13 +56,13 @@ const Contact = () => {
     {
       name: "X",
       url: "https://x.com/idarkstudio",
-      icon: "/images/rrss/x.png",
+      Icon: XIcon,
       handle: "@idarkstudio",
     },
     {
       name: "Discord",
       url: "https://discord.gg/zHez7fUBE8",
-      icon: "/images/rrss/ds.png",
+      Icon: DiscordIcon,
       handle: "Join our Discord",
     },
     // {
@@ -73,7 +74,7 @@ const Contact = () => {
     {
       name: "LinkedIn",
       url: "https://www.linkedin.com/company/inside-dark-studio",
-      icon: "/images/rrss/in.png",
+      Icon: LinkedinIcon,
       handle: "Inside Dark Studio",
     },
   ];
@@ -82,7 +83,7 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent font-cinzel">
             {t("contact.title")}
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">{t("contact.subtitle")}</p>
@@ -204,7 +205,7 @@ const Contact = () => {
                   <p className="text-gray-400 text-sm mb-1">Email</p>
                   <a
                     href="mailto:contact@insidedarkstudio.com"
-                    className="text-red-500 hover:text-red-400 transition-all duration-300 flex items-center hover:shadow-red-glow"
+                    className="text-red-500 hover:text-red-400 transition-all duration-300 flex items-center hover:shadow-red-glow w-fit"
                   >
                     contact@insidedarkstudio.com
                     <ExternalLink className="w-4 h-4 ml-2" />
@@ -237,7 +238,7 @@ const Contact = () => {
                     className="group flex items-center p-4 bg-black/50 rounded-lg border border-red-900 hover:border-red-500 transition-all duration-300 transform hover:scale-105 hover:shadow-red-glow"
                   >
                     {/* <span className="text-2xl mr-3">{social.icon}</span> */}
-                    <img src={social.icon} alt={social.name} className="h-6 mr-3" />
+                    <social.Icon className="w-6 h-6 text-red-500 mr-3" />
                     <div>
                       <div className="text-white font-medium group-hover:text-red-300 transition-colors">
                         {social.name}

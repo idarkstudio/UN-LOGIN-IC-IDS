@@ -26,10 +26,11 @@ const ROMUniverse = () => {
         "2D dungeon crawler game where the player, as rick,navigates a mysterious temple, uncovering its secrets while trying to survive and escape.",
       image: "/images/vilintrius.png",
       genre: "Dungeon Crawler",
-      icon: <Sparkles className="w-6 h-6" />,
+      // icon: <Sparkles className="w-6 h-6" />,
       narrative:
         "The gateway to understanding the deeper mysteries of the ROM Universe begins here.",
       color: "from-purple-500 to-indigo-700",
+      ready: true,
     },
     {
       name: "The Battle for Zhion",
@@ -37,10 +38,11 @@ const ROMUniverse = () => {
         "FPS game join the forces in the battlefield, zhion is still at war and all the factions trying to control their land, battle royale mode, and all the classic modes for this one​.",
       image: "/images/tbfz.png",
       genre: "FPS",
-      icon: <Shield className="w-6 h-6" />,
+      // icon: <Shield className="w-6 h-6" />,
       narrative:
         "The eternal conflict that shapes the very foundations of reality across all realms.",
       color: "from-red-500 to-orange-700",
+      ready: true,
     },
     {
       name: "BitRoyale",
@@ -48,9 +50,10 @@ const ROMUniverse = () => {
         "Turn-based, tabletop-inspired game where slot mechanics meet tactical decision-making. Players compete in strategic rounds powered by a dynamic slot machine system that determines actions, outcomes and power-ups.",
       image: "/images/bit.png",
       genre: "Turn-Based Strategy",
-      icon: <Zap className="w-6 h-6" />,
+      // icon: <Zap className="w-6 h-6" />,
       narrative: "Where the boundaries between digital and physical reality dissolve into chaos.",
       color: "from-cyan-500 to-blue-700",
+      ready: false,
     },
     {
       name: "The Heroes Supremacy",
@@ -58,9 +61,10 @@ const ROMUniverse = () => {
         "MOBA style game, with a little changes of game style and a few game modes, including anrts, classic deathmatch, team deathmatch, capture the flag and a few others.",
       image: "/images/ths.png",
       genre: "MOBA",
-      icon: <Crown className="w-6 h-6" />,
+      // icon: <Crown className="w-6 h-6" />,
       narrative: "The proving ground where mortals transcend their limitations to become legends.",
       color: "from-yellow-500 to-amber-700",
+      ready: false,
     },
     {
       name: "Vetirent Magic Cards",
@@ -68,9 +72,10 @@ const ROMUniverse = () => {
         "Card game play with forces of the unknown and discover some new magic styles inside this cards, all the nfts from the universe are cards.​",
       image: "/images/vetirent.png",
       genre: "Card Game",
-      icon: <Wand2 className="w-6 h-6" />,
+      // icon: <Wand2 className="w-6 h-6" />,
       narrative: "The ancient art of Vetirent magic, channeled through mystical card mastery.",
       color: "from-emerald-500 to-teal-700",
+      ready: false,
     },
     {
       name: "The Player Fortress",
@@ -78,9 +83,10 @@ const ROMUniverse = () => {
         "Each player will get their own dimension where they can build anything they want and welcome their own fortress in the metaverse where everything is decided by them​.",
       image: "/images/fortress.png",
       genre: "Player Fortress",
-      icon: <Castle className="w-6 h-6" />,
+      // icon: <Castle className="w-6 h-6" />,
       narrative: "Sanctuaries of hope built to withstand the storms of an uncertain multiverse.",
       color: "from-stone-500 to-gray-700",
+      ready: false,
     },
     {
       name: "The Search for Vetirents",
@@ -88,9 +94,10 @@ const ROMUniverse = () => {
         "Turn base game, explore what happened after the great release, and try to find there manence of vetirent’s scatter around the multiverse​.",
       image: "/images/vetirents.png",
       genre: "RPGMMO",
-      icon: <Search className="w-6 h-6" />,
+      // icon: <Search className="w-6 h-6" />,
       narrative: "The eternal search for artifacts that bridge the gap between mortal and divine.",
       color: "from-violet-500 to-purple-700",
+      ready: false,
     },
     {
       name: "The Release of Madness",
@@ -98,10 +105,11 @@ const ROMUniverse = () => {
         "Descend into the psychological abyss where sanity becomes currency and madness reveals hidden truths. Face the darkness within to emerge transformed.",
       image: "/images/rom.png",
       genre: "Psychological Horror",
-      icon: <Skull className="w-6 h-6" />,
+      // icon: <Skull className="w-6 h-6" />,
       narrative:
         "The final revelation where all threads of the ROM Universe converge in terrifying clarity.",
       color: "from-red-600 to-black",
+      ready: false,
     },
   ];
 
@@ -164,26 +172,26 @@ const ROMUniverse = () => {
                       <img
                         src={games[currentGame].image}
                         alt={games[currentGame].name}
-                        className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-80 object-contain transition-transform duration-500 group-hover:scale-110"
                       />
                       <div
-                        className={`absolute inset-0 bg-gradient-to-t ${games[currentGame].color} opacity-30 group-hover:opacity-50 transition-opacity duration-300`}
+                        className={`absolute inset-0 bg-gradient-to-t ${games[currentGame].color} opacity-10 group-hover:opacity-10 transition-opacity duration-300`}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
                       {/* Game icon overlay */}
-                      <div className="absolute top-4 left-4">
+                      {/* <div className="absolute top-4 left-4">
                         <div
                           className={`p-3 rounded-xl bg-gradient-to-r ${games[currentGame].color} text-white shadow-lg`}
                         >
                           {games[currentGame].icon}
                         </div>
-                      </div>
+                      </div> */}
 
                       {/* Genre badge */}
                       <div className="absolute bottom-4 left-4">
                         <span
-                          className={`px-4 py-2 bg-gradient-to-r ${games[currentGame].color} text-white text-sm font-semibold rounded-full shadow-lg`}
+                          className={`px-4 py-2 bg-gradient-to-r text-white text-sm font-semibold rounded-full shadow-lg`}
                         >
                           {games[currentGame].genre}
                         </span>
@@ -213,8 +221,14 @@ const ROMUniverse = () => {
                     </div>
 
                     <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-600 to-red-800 text-white rounded-xl hover:from-red-700 hover:to-red-900 transition-all duration-300 transform hover:scale-105 hover:shadow-red-glow border border-red-500 hover:border-red-400 font-semibold">
-                      Discover This Realm
-                      <ExternalLink className="ml-3 w-5 h-5" />
+                      {games[currentGame].ready ? (
+                        <>
+                          Discover This Realm
+                          <ExternalLink className="ml-3 w-5 h-5" />
+                        </>
+                      ) : (
+                        "Coming Soon"
+                      )}
                     </button>
                   </div>
                 </div>
@@ -273,21 +287,21 @@ const ROMUniverse = () => {
                   <img
                     src={game.image}
                     alt={game.name}
-                    className="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-110"
+                    className="w-full h-40 object-contain transition-transform duration-300 group-hover:scale-110"
                   />
                   <div
-                    className={`absolute inset-0 bg-gradient-to-t ${game.color} opacity-20 group-hover:opacity-40 transition-opacity duration-300`}
+                    className={`absolute inset-0 bg-gradient-to-t ${game.color} opacity-10 group-hover:opacity-10 transition-opacity duration-300`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
 
                   {/* Game icon */}
-                  <div className="absolute top-3 left-3">
+                  {/* <div className="absolute top-3 left-3">
                     <div
                       className={`p-2 rounded-lg bg-gradient-to-r ${game.color} text-white shadow-lg`}
                     >
                       {game.icon}
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* Genre badge */}
                   <div className="absolute top-3 right-3">

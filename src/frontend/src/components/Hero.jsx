@@ -6,6 +6,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 
 import ImageSequence from "./ImageSequence";
 import { LanguageContext } from "../App";
+import { scrollTo } from "../utils/functions";
 
 // Speed control component
 const SpeedControl = ({ speed, onSpeedChange }) => {
@@ -564,13 +565,6 @@ const Hero = () => {
     }
   }, []);
 
-  const scrollToROM = () => {
-    const element = document.getElementById("rom-universe");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Three.js Canvas Background - immediately visible */}
@@ -590,7 +584,7 @@ const Hero = () => {
           <CameraController speed={animationSpeed} />
         </Canvas> */}
       <div className="absolute inset-0 w-full object-cover z-10 grid place-items-center">
-        <img src="/darkirina.gif" alt="Darkirina" className="h-full" />
+        <img src="/darkirina.gif" alt="Darkirina" className="h-[90%]" />
       </div>
       <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted>
         <source src="/background.mp4" type="video/mp4" />
@@ -608,7 +602,7 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-20 text-center px-4 sm:px-6 lg:px-8 w-full mx-auto">
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 mystical-title-entrance drop-shadow-2xl text-shadow-red">
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold pb-6 mystical-title-entrance drop-shadow-2xl text-shadow-red font-cinzel">
           {t("hero.title")}
         </h1>
 
@@ -617,8 +611,8 @@ const Hero = () => {
         </p>
 
         <button
-          onClick={scrollToROM}
-          className="group relative inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-red-600 to-red-800 rounded-full hover:from-red-700 hover:to-red-900 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-glow border border-red-500/30 hover:border-red-400"
+          onClick={() => scrollTo("rom-universe")}
+          className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-600 to-red-800 text-white rounded-xl hover:from-red-700 hover:to-red-900 transition-all duration-300 transform hover:scale-105 hover:shadow-red-glow border border-red-500 hover:border-red-400 font-semibold text-lg"
         >
           {t("hero.cta")}
           <ChevronDown className="ml-2 w-5 h-5 group-hover:animate-bounce" />
@@ -630,7 +624,10 @@ const Hero = () => {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
-        <ChevronDown className="w-6 h-6 text-red-400 drop-shadow-lg glow-red" />
+        <ChevronDown
+          className="w-6 h-6 text-red-400 drop-shadow-lg glow-red cursor-pointer"
+          onClick={() => scrollTo("about")}
+        />
       </div>
     </section>
   );

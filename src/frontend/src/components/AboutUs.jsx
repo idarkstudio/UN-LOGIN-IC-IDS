@@ -20,30 +20,35 @@ const AboutUs = () => {
       description:
         "Visionary leader with extensive experience in Web3 gaming and blockchain technology",
       image: "/images/team/stoll.png",
+      linkedin: "https://www.linkedin.com/in/marianostoll/",
     },
     {
       name: "Francisca Morales",
-      role: "CCO",
+      role: "COO",
       description: "Creative strategist driving innovative content and community engagement",
       image: "/images/team/fran.png",
+      linkedin: "https://www.linkedin.com/in/franciscamoralesc/",
     },
     {
       name: "Francisco Rappazzini",
       role: "CTO",
       description: "Technical architect behind our cutting-edge blockchain infrastructure",
       image: "/images/team/rappa.png",
+      linkedin: "https://www.linkedin.com/in/francisco-rappazzini/",
     },
     {
       name: "Lautaro Prado",
       role: "Game Dev Manager",
       description: "Leading game development with expertise from top-tier gaming studios",
       image: "/images/team/lauti.jpg",
+      linkedin: "https://www.linkedin.com/in/lautaroprado/",
     },
     {
       name: "Lucía Mamud",
       role: "Art Manager",
       description: "Creative director shaping the visual identity of our gaming universe",
       image: "/images/team/lu.png",
+      linkedin: "https://www.linkedin.com/in/lucía-mamud-886065190/",
     },
   ];
 
@@ -80,7 +85,7 @@ const AboutUs = () => {
           </button>
 
           <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent font-cinzel">
               {t("aboutus.title")}
             </h1>
             <p className="text-xl sm:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
@@ -166,9 +171,14 @@ const AboutUs = () => {
                       className="w-full h-full rounded-full object-cover grayscale"
                     />
                   </div>
-                  <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-red-600 to-red-800 rounded-full flex items-center justify-center">
+                  <a
+                    href={leader.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-red-600 to-red-800 rounded-full flex items-center justify-center cursor-pointer"
+                  >
                     <ChevronRight className="w-4 h-4 text-white" />
-                  </div>
+                  </a>
                 </div>
 
                 <div className="text-center">
