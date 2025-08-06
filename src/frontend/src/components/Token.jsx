@@ -139,19 +139,19 @@ const Token = () => {
       name: t("token.factions.1.title"),
       description: t("token.factions.1.description"),
       color: "from-red-500 to-red-700",
-      icon: "⚔️",
+      icon: "/images/factions/emperor.avif",
     },
     {
       name: t("token.factions.2.title"),
       description: t("token.factions.2.description"),
       color: "from-blue-500 to-blue-700",
-      icon: "🛡️",
+      icon: "/images/factions/civil.avif",
     },
     {
       name: t("token.factions.3.title"),
       description: t("token.factions.3.description"),
       color: "from-purple-500 to-purple-700",
-      icon: "🎯",
+      icon: "/images/factions/mercenarius.png",
     },
   ];
 
@@ -423,9 +423,16 @@ const Token = () => {
               {factions.map((faction, index) => (
                 <div
                   key={index}
-                  className="group bg-black/50 backdrop-blur-sm rounded-xl p-6 border border-red-900 hover:border-red-500 transition-all duration-300 transform hover:scale-105 hover:shadow-red-glow text-center"
+                  className={`group bg-black/50 backdrop-blur-sm rounded-xl p-6 border border-red-900 hover:border-red-500 transition-all duration-300 transform hover:scale-105 hover:shadow-red-glow text-center`}
                 >
-                  <div className="text-4xl mb-4">{faction.icon}</div>
+                  {/* <div className="text-4xl mb-4">{faction.icon}</div> */}
+                  <img
+                    src={faction.icon}
+                    alt={faction.name}
+                    className={`h-24 mx-auto ${
+                      faction.name === "Extraneus Mercenarius" ? "p-3" : ""
+                    }`}
+                  />
 
                   <h5
                     className={`text-xl font-bold mb-3 bg-gradient-to-r ${faction.color} bg-clip-text text-transparent`}
