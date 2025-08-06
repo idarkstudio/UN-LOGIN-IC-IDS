@@ -68,7 +68,7 @@ const Navigation = () => {
                 <button
                   key={item.key}
                   onClick={() => scrollToSection(item.section)}
-                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:shadow-red-glow hover:bg-red-900/20"
+                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-100 hover:shadow-red-glow hover:bg-red-900/20"
                 >
                   {t(`nav.${item.key}`)}
                 </button>
@@ -82,7 +82,7 @@ const Navigation = () => {
             <div className="relative">
               <button
                 onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-                className="flex items-center space-x-1 text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:shadow-red-glow hover:bg-red-900/20"
+                className="flex items-center space-x-1 text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-100 hover:shadow-red-glow hover:bg-red-900/20"
               >
                 <Globe className="w-4 h-4" />
                 <span>{language.toUpperCase()}</span>
@@ -94,7 +94,7 @@ const Navigation = () => {
                       setLanguage("en");
                       setIsLanguageOpen(false);
                     }}
-                    className={`block w-full text-left px-4 py-2 text-sm transition-all duration-300 hover:bg-red-900/20 hover:shadow-red-glow ${
+                    className={`block w-full text-left px-4 py-2 text-sm transition-all duration-100 hover:bg-red-900/20 hover:shadow-red-glow ${
                       language === "en" ? "text-red-400" : "text-gray-300 hover:text-white"
                     }`}
                   >
@@ -105,7 +105,7 @@ const Navigation = () => {
                       setLanguage("es");
                       setIsLanguageOpen(false);
                     }}
-                    className={`block w-full text-left px-4 py-2 text-sm transition-all duration-300 hover:bg-red-900/20 hover:shadow-red-glow ${
+                    className={`block w-full text-left px-4 py-2 text-sm transition-all duration-100 hover:bg-red-900/20 hover:shadow-red-glow ${
                       language === "es" ? "text-red-400" : "text-gray-300 hover:text-white"
                     }`}
                   >
@@ -118,7 +118,7 @@ const Navigation = () => {
             {/* The Dark Pitch Button */}
             <button
               onClick={handleDarkPitchClick}
-              className="flex items-center px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:shadow-red-glow bg-red-600 hover:bg-red-700 text-white border border-red-500 hover:border-red-400"
+              className="flex items-center px-4 py-2 rounded-md text-sm font-medium transition-all duration-100 hover:shadow-red-glow bg-red-600 hover:bg-red-700 text-white border border-red-500 hover:border-red-400"
             >
               {t("nav.darkpitch")}
               <ExternalLink className="w-4 h-4 ml-2" />
@@ -129,7 +129,7 @@ const Navigation = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-300 hover:text-white p-2 transition-all duration-300 hover:shadow-red-glow hover:bg-red-900/20 rounded-md"
+              className="text-gray-300 hover:text-white p-2 transition-all duration-100 hover:shadow-red-glow hover:bg-red-900/20 rounded-md"
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -145,7 +145,7 @@ const Navigation = () => {
               <button
                 key={item.key}
                 onClick={() => scrollToSection(item.section)}
-                className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:shadow-red-glow hover:bg-red-900/20"
+                className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-100 hover:shadow-red-glow hover:bg-red-900/20"
               >
                 {t(`nav.${item.key}`)}
               </button>
@@ -156,14 +156,14 @@ const Navigation = () => {
                   <Globe className="w-4 h-4 text-gray-300" />
                   <button
                     onClick={() => setLanguage(language === "en" ? "es" : "en")}
-                    className="text-gray-300 hover:text-white text-sm transition-all duration-300 hover:shadow-red-glow"
+                    className="text-gray-300 hover:text-white text-sm transition-all duration-100 hover:shadow-red-glow"
                   >
                     {language === "en" ? "Español" : "English"}
                   </button>
                 </div>
                 <button
                   onClick={handleDarkPitchClick}
-                  className="flex items-center px-3 py-1 rounded text-sm transition-all duration-300 hover:shadow-red-glow bg-red-600 hover:bg-red-700 text-white border border-red-500 hover:border-red-400"
+                  className="flex items-center px-3 py-1 rounded text-sm transition-all duration-100 hover:shadow-red-glow bg-red-600 hover:bg-red-700 text-white border border-red-500 hover:border-red-400"
                 >
                   {t("nav.darkpitch")}
                   <ExternalLink className="w-3 h-3 ml-1" />

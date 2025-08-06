@@ -12,6 +12,8 @@ const Contact = () => {
     name: "",
     email: "",
     message: "",
+    error: null,
+    success: null,
   });
 
   // const submitContactForm = useSubmitContactForm();
@@ -26,11 +28,16 @@ const Contact = () => {
 
       if (res?.status !== 200) throw new Error(res.text);
 
-      setFormData({ name: "", email: "", message: "", isSubmitting: false });
+      setFormData({ name: "", email: "", message: "", error: null, success: true });
     } catch (err) {
       console.error("Error submitting contact form:", err);
+      setFormData((prev) => ({ ...prev, error: true }));
     }
     setLoading(false);
+
+    setTimeout(() => {
+      setFormData((prev) => ({ ...prev, success: null, error: null }));
+    }, 3000);
   };
 
   const handleInputChange = (e) => {
@@ -94,7 +101,7 @@ const Contact = () => {
           <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-red-900 h-full">
             <div className="flex items-center mb-6">
               <MessageCircle className="w-6 h-6 text-red-500 mr-3" />
-              <h3 className="text-2xl font-bold text-white">Send us a message</h3>
+              <h3 className="text-2xl font-bold text-white">{t("contact.form.title")}</h3>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -109,9 +116,9 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  disabled={submitContactForm.isPending}
+                  disabled={loading}
                   className="w-full px-4 py-3 bg-black border border-red-900 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500 transition-all duration-300 hover:border-red-600 hover:shadow-red-glow disabled:opacity-50"
-                  placeholder="Your full name"
+                  placeholder={t("contact.name.placeholder")}
                 />
               </div>
 
@@ -126,9 +133,9 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  disabled={submitContactForm.isPending}
+                  disabled={loading}
                   className="w-full px-4 py-3 bg-black border border-red-900 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500 transition-all duration-300 hover:border-red-600 hover:shadow-red-glow disabled:opacity-50"
-                  placeholder="your.email@example.com"
+                  placeholder={t("contact.email.placeholder")}
                 />
               </div>
 
@@ -143,9 +150,9 @@ const Contact = () => {
                   onChange={handleInputChange}
                   required
                   rows={5}
-                  disabled={submitContactForm.isPending}
+                  disabled={loading}
                   className="w-full px-4 py-3 bg-black border border-red-900 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500 transition-all duration-300 hover:border-red-600 hover:shadow-red-glow resize-none disabled:opacity-50"
-                  placeholder="Tell us about your project or inquiry..."
+                  placeholder={t("contact.message.placeholder")}
                 />
               </div>
 
@@ -157,7 +164,7 @@ const Contact = () => {
                 {loading ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2" />
-                    Sending...
+                    {t("contact.sending")}
                   </>
                 ) : (
                   <>
@@ -167,24 +174,20 @@ const Contact = () => {
                 )}
               </button>
 
-              {submitContactForm.isSuccess && (
+              {formData.success && (
                 <div className="p-4 bg-green-900/20 border border-green-700 rounded-lg">
                   <div className="flex items-center">
                     <CheckCircle className="w-5 h-5 text-green-400 mr-2" />
-                    <p className="text-green-400">
-                      Message sent successfully! We'll get back to you soon.
-                    </p>
+                    <p className="text-green-400">{t("contact.success")}</p>
                   </div>
                 </div>
               )}
 
-              {submitContactForm.isError && (
+              {formData.error && (
                 <div className="p-4 bg-red-900/20 border border-red-700 rounded-lg">
                   <div className="flex items-center">
                     <AlertCircle className="w-5 h-5 text-red-400 mr-2" />
-                    <p className="text-red-400">
-                      Failed to send message. Please try again or contact us directly.
-                    </p>
+                    <p className="text-red-400">{t("contact.error")}</p>
                   </div>
                 </div>
               )}
@@ -197,12 +200,12 @@ const Contact = () => {
             <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-red-900">
               <div className="flex items-center mb-6">
                 <Mail className="w-6 h-6 text-red-500 mr-3" />
-                <h3 className="text-2xl font-bold text-white">Direct Contact</h3>
+                <h3 className="text-2xl font-bold text-white">{t("contact.direct.title")}</h3>
               </div>
 
               <div className="space-y-4">
                 <div>
-                  <p className="text-gray-400 text-sm mb-1">Email</p>
+                  <p className="text-gray-400 text-sm mb-1">{t("contact.direct.email")}</p>
                   <a
                     href="mailto:contact@insidedarkstudio.com"
                     className="text-red-500 hover:text-red-400 transition-all duration-300 flex items-center hover:shadow-red-glow w-fit"
@@ -213,20 +216,20 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <p className="text-gray-400 text-sm mb-1">Business Hours</p>
-                  <p className="text-gray-300">Monday - Friday: 9:00 AM - 6:00 PM (GMT-5)</p>
+                  <p className="text-gray-400 text-sm mb-1">{t("contact.direct.hours")}</p>
+                  <p className="text-gray-300">{t("contact.direct.hours.description")}</p>
                 </div>
 
                 <div>
-                  <p className="text-gray-400 text-sm mb-1">Response Time</p>
-                  <p className="text-gray-300">Usually within 24 hours</p>
+                  <p className="text-gray-400 text-sm mb-1">{t("contact.direct.response")}</p>
+                  <p className="text-gray-300">{t("contact.direct.response.description")}</p>
                 </div>
               </div>
             </div>
 
             {/* Social Media */}
             <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-red-900">
-              <h3 className="text-2xl font-bold text-white mb-6">Follow Us</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">{t("contact.follow")}</h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {socialLinks.map((social, index) => (
@@ -254,11 +257,8 @@ const Contact = () => {
         </div>
         {/* Community */}
         <div className="bg-gradient-to-r from-red-900/20 to-red-800/20 backdrop-blur-sm rounded-2xl p-8 border border-red-700 w-full mt-8">
-          <h3 className="text-2xl font-bold text-red-500 mb-4">Join Our Community</h3>
-          <p className="text-gray-300 mb-6">
-            Be part of the revolution in Web3 gaming. Connect with developers, players, and
-            enthusiasts from around Latin America and beyond.
-          </p>
+          <h3 className="text-2xl font-bold text-red-500 mb-4">{t("contact.join.title")}</h3>
+          <p className="text-gray-300 mb-6">{t("contact.join.description")}</p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
               href="https://discord.gg/zHez7fUBE8"
@@ -266,7 +266,7 @@ const Contact = () => {
               rel="noopener noreferrer"
               className="flex-1 flex items-center justify-center px-4 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-all duration-300 hover:shadow-red-glow border border-red-500 hover:border-red-400"
             >
-              Join Discord
+              {t("contact.join.cta")} Discord
             </a>
             {/* <a
               href="https://t.me/idarkstudio"

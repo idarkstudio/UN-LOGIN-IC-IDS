@@ -9,21 +9,21 @@ const Footer = () => {
 
   const footerLinks = {
     company: {
-      title: "Company",
+      title: t("footer.nav.1.title"),
       links: [
-        { name: "About Us", href: "#about" },
-        // { name: "Roadmap", href: "#roadmap" },
-        // { name: "Careers", href: "#" },
-        // { name: "Press Kit", href: "#" },
+        { name: t("footer.nav.1.1"), href: "#about" },
+        // { name: t("footer.nav.1.2"), href: "#roadmap" },
+        // { name: t("footer.nav.1.3"), href: "#" },
+        // { name: t("footer.nav.1.4"), href: "#" },
       ],
     },
     games: {
-      title: "Games",
+      title: t("footer.nav.2.title"),
       links: [
-        { name: "ROM Universe", href: "#rom-universe" },
-        // { name: "Dark Realms", href: "#" },
-        // { name: "Cyber Nexus", href: "#" },
-        // { name: "Mystic Cards", href: "#" },
+        { name: t("footer.nav.2.1"), href: "#rom-universe" },
+        // { name: t("footer.nav.2.2"), href: "#" },
+        // { name: t("footer.nav.2.3"), href: "#" },
+        // { name: t("footer.nav.2.4"), href: "#" },
       ],
     },
     // resources: {
@@ -36,7 +36,7 @@ const Footer = () => {
     //   ],
     // },
     community: {
-      title: "Community",
+      title: t("footer.nav.3.title"),
       links: [
         { name: "Discord", href: "https://discord.gg/zHez7fUBE8" },
         { name: "X", href: "https://twitter.com/idarkstudio" },
@@ -63,9 +63,7 @@ const Footer = () => {
               </div> */}
               <img src="/images/ids.png" alt="Inside Dark Studio" className="h-16" />
             </div>
-            <p className="text-gray-400 text-sm mb-4">
-              Latin America's premier Web3 game studio creating fully on-chain gaming experiences.
-            </p>
+            <p className="text-gray-400 text-sm mb-4">{t("footer.description")}</p>
             <div className="flex space-x-4">
               <a
                 href="https://twitter.com/idarkstudio"
@@ -173,17 +171,17 @@ const Footer = () => {
             </div>
 
             <div className="flex items-center space-x-6 text-gray-400 text-sm">
-              <a href="#" className="hover:text-white transition-colors">
+              {/* <a href="#" className="hover:text-white transition-colors">
                 Privacy Policy
               </a>
               <a href="#" className="hover:text-white transition-colors">
                 Terms of Service
-              </a>
+              </a> */}
               <button
                 onClick={scrollToTop}
                 className="hover:text-white transition-colors flex items-center"
               >
-                Back to Top ↑
+                {t("footer.top")} ↑
               </button>
             </div>
           </div>

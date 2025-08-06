@@ -602,7 +602,7 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-20 text-center px-4 sm:px-6 lg:px-8 w-full mx-auto">
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold pb-6 mystical-title-entrance drop-shadow-2xl text-shadow-red font-cinzel">
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold pb-6 mystical-title-entrance drop-shadow-2xl text-shadow-red font-cinzel drop-shadow-red">
           {t("hero.title")}
         </h1>
 
@@ -615,7 +615,7 @@ const Hero = () => {
           className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-600 to-red-800 text-white rounded-xl hover:from-red-700 hover:to-red-900 transition-all duration-300 transform hover:scale-105 hover:shadow-red-glow border border-red-500 hover:border-red-400 font-semibold text-lg"
         >
           {t("hero.cta")}
-          <ChevronDown className="ml-2 w-5 h-5 group-hover:animate-bounce" />
+          <ChevronDown className="ml-2 w-5 h-5" />
 
           {/* Glowing effect */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-red-800 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />

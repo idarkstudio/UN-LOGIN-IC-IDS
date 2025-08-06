@@ -22,39 +22,39 @@ const Token = () => {
   const tokenFeatures = [
     {
       icon: <Gamepad2 className="w-8 h-8" />,
-      title: "In-Game Purchases",
-      description: "Buy items, upgrades, and premium content",
+      title: t("token.uses.1.title"),
+      description: t("token.uses.1.description"),
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
-      title: "Staking Rewards",
-      description: "Earn passive income by staking AGLD tokens",
+      title: t("token.uses.2.title"),
+      description: t("token.uses.2.description"),
     },
     {
       icon: <Gift className="w-8 h-8" />,
-      title: "Governance Rights",
-      description: "Vote on game updates and ecosystem decisions",
+      title: t("token.uses.3.title"),
+      description: t("token.uses.3.description"),
     },
     {
       icon: <Coins className="w-8 h-8" />,
-      title: "Cross-Game Currency",
-      description: "Use AGLD across all ROM Universe games",
+      title: t("token.uses.4.title"),
+      description: t("token.uses.4.description"),
     },
   ];
 
   const earningMethods = [
-    "Complete daily quests and challenges",
-    "Win competitive tournaments",
-    "Trade rare NFT items",
-    "Participate in governance voting",
-    "Refer new players to the ecosystem",
-    "Create and sell in-game content",
+    t("token.earning.1"),
+    t("token.earning.2"),
+    t("token.earning.3"),
+    t("token.earning.4"),
+    t("token.earning.5"),
+    t("token.earning.6"),
   ];
 
   const rarityTiers = [
     {
       tier: "S",
-      name: "Legendary",
+      name: t("token.rarity.1"),
       color: "from-yellow-400 to-yellow-600",
       bgColor: "from-yellow-900/20 to-yellow-800/20",
       borderColor: "border-yellow-500",
@@ -64,7 +64,7 @@ const Token = () => {
     },
     {
       tier: "A",
-      name: "Epic",
+      name: t("token.rarity.2"),
       color: "from-purple-400 to-purple-600",
       bgColor: "from-purple-900/20 to-purple-800/20",
       borderColor: "border-purple-500",
@@ -74,7 +74,7 @@ const Token = () => {
     },
     {
       tier: "B",
-      name: "Rare",
+      name: t("token.rarity.3"),
       color: "from-blue-400 to-blue-600",
       bgColor: "from-blue-900/20 to-blue-800/20",
       borderColor: "border-blue-500",
@@ -84,7 +84,7 @@ const Token = () => {
     },
     {
       tier: "C",
-      name: "Uncommon",
+      name: t("token.rarity.4"),
       color: "from-green-400 to-green-600",
       bgColor: "from-green-900/20 to-green-800/20",
       borderColor: "border-green-500",
@@ -94,7 +94,7 @@ const Token = () => {
     },
     {
       tier: "D",
-      name: "Common",
+      name: t("token.rarity.5"),
       color: "from-gray-400 to-gray-600",
       bgColor: "from-gray-900/20 to-gray-800/20",
       borderColor: "border-gray-500",
@@ -106,51 +106,50 @@ const Token = () => {
 
   const rarityPerks = [
     {
-      title: "Stack of Gold",
-      description: "Ancient Gold amounts distributed by rarity level",
+      title: t("token.rarity.perk.1.title"),
+      description: t("token.rarity.perk.1.subtitle"),
       icon: <Coins className="w-6 h-6" />,
-      details: "Higher rarity NFTs receive larger Ancient Gold rewards upon claiming",
+      details: t("token.rarity.perk.1.description"),
     },
     {
-      title: "Gold Club",
-      description: "Monthly gold delivery with 10% growth",
+      title: t("token.rarity.perk.2.title"),
+      description: t("token.rarity.perk.2.subtitle"),
       icon: <TrendingUp className="w-6 h-6" />,
-      details:
-        "Monthly Ancient Gold delivery that grows 10% each month, stackable for multiple NFT holders",
+      details: t("token.rarity.perk.2.description"),
     },
     {
-      title: "Master of Negotiations",
-      description: "Marketplace discounts and fee waivers",
+      title: t("token.rarity.perk.3.title"),
+      description: t("token.rarity.perk.3.subtitle"),
       icon: <Percent className="w-6 h-6" />,
-      details: "Marketplace discounts by rarity level, auction house fees waived (non-stackable)",
+      details: t("token.rarity.perk.3.description"),
     },
   ];
 
   const sharedPerks = [
-    "Unique NFT ownership verification",
-    "Exclusive vanity items and cosmetics",
-    "Special in-game pets and companions",
-    "Genesis avatar access and customization",
-    "Discord rank privileges and channels",
-    "Early access to new game releases",
+    t("token.holders.1"),
+    t("token.holders.2"),
+    t("token.holders.3"),
+    t("token.holders.4"),
+    t("token.holders.5"),
+    t("token.holders.6"),
   ];
 
   const factions = [
     {
-      name: "Emperor's Armada",
-      description: "Elite imperial forces commanding the galaxy with iron discipline",
+      name: t("token.factions.1.title"),
+      description: t("token.factions.1.description"),
       color: "from-red-500 to-red-700",
       icon: "⚔️",
     },
     {
-      name: "Civil Defense",
-      description: "Protectors of civilian populations and peaceful settlements",
+      name: t("token.factions.2.title"),
+      description: t("token.factions.2.description"),
       color: "from-blue-500 to-blue-700",
       icon: "🛡️",
     },
     {
-      name: "Extraneus Mercenarius",
-      description: "Independent mercenaries operating beyond the law",
+      name: t("token.factions.3.title"),
+      description: t("token.factions.3.description"),
       color: "from-purple-500 to-purple-700",
       icon: "🎯",
     },
@@ -217,8 +216,7 @@ const Token = () => {
               {t("token.genesis")}
             </h3>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
-              666 hand-finished NFTs, each representing a unique part of the ROM Universe. Designed
-              for OG supporters and featuring iconic early concept art from our development journey.
+              {t("token.genesis.description")}
             </p>
           </div>
 
@@ -288,7 +286,9 @@ const Token = () => {
 
           {/* Rarity System */}
           <div className="mb-12">
-            <h4 className="text-2xl font-bold text-center mb-8 text-red-500">Rarity System</h4>
+            <h4 className="text-2xl font-bold text-center mb-8 text-red-500">
+              {t("token.rarity")}
+            </h4>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
               {rarityTiers.map((tier, index) => (
@@ -322,7 +322,9 @@ const Token = () => {
 
           {/* Rarity Perks */}
           <div className="mb-12">
-            <h4 className="text-2xl font-bold text-center mb-8 text-red-500">Rarity-Based Perks</h4>
+            <h4 className="text-2xl font-bold text-center mb-8 text-red-500">
+              {t("token.rarity.perk")}
+            </h4>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {rarityPerks.map((perk, index) => (
@@ -346,48 +348,46 @@ const Token = () => {
           <div className="mb-12">
             <div className="bg-gradient-to-r from-red-900/20 to-red-800/20 backdrop-blur-sm rounded-2xl p-8 border border-red-700">
               <h4 className="text-2xl font-bold text-center mb-6 text-red-500">
-                Ancient Gold (AGLD) Details
+                {t("token.details.title")}
               </h4>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h5 className="text-lg font-semibold text-white mb-4">Currency Features</h5>
+                  <h5 className="text-lg font-semibold text-white mb-4">
+                    {t("token.details.1.title")}
+                  </h5>
                   <ul className="space-y-3">
                     <li className="flex items-start">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0" />
-                      <span className="text-gray-300">
-                        Primary in-game currency across ROM Universe
-                      </span>
+                      <span className="text-gray-300">{t("token.details.1.1")}</span>
                     </li>
                     <li className="flex items-start">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0" />
-                      <span className="text-gray-300">
-                        Tradeable for ICP on supported exchanges
-                      </span>
+                      <span className="text-gray-300">{t("token.details.1.2")}</span>
                     </li>
                     <li className="flex items-start">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0" />
-                      <span className="text-gray-300">
-                        Used for purchases, upgrades, and premium content
-                      </span>
+                      <span className="text-gray-300">{t("token.details.1.3")}</span>
                     </li>
                   </ul>
                 </div>
 
                 <div>
-                  <h5 className="text-lg font-semibold text-white mb-4">Anti-Abuse Measures</h5>
+                  <h5 className="text-lg font-semibold text-white mb-4">
+                    {t("token.details.2.title")}
+                  </h5>
                   <ul className="space-y-3">
                     <li className="flex items-start">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0" />
-                      <span className="text-gray-300">One claim per wallet address</span>
+                      <span className="text-gray-300">{t("token.details.2.1")}</span>
                     </li>
                     <li className="flex items-start">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0" />
-                      <span className="text-gray-300">30-day claim window for rewards</span>
+                      <span className="text-gray-300">{t("token.details.2.2")}</span>
                     </li>
                     <li className="flex items-start">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0" />
-                      <span className="text-gray-300">Verified ownership requirements</span>
+                      <span className="text-gray-300">{t("token.details.2.3")}</span>
                     </li>
                   </ul>
                 </div>
@@ -398,7 +398,7 @@ const Token = () => {
           {/* Shared Perks */}
           <div className="mb-12">
             <h4 className="text-2xl font-bold text-center mb-8 text-red-500">
-              Shared Genesis Holder Perks
+              {t("token.holders.title")}
             </h4>
 
             <div className="bg-black/50 backdrop-blur-sm rounded-xl p-8 border border-red-900">
@@ -415,7 +415,9 @@ const Token = () => {
 
           {/* Factions */}
           <div className="mb-12">
-            <h4 className="text-2xl font-bold text-center mb-8 text-red-500">Three Factions</h4>
+            <h4 className="text-2xl font-bold text-center mb-8 text-red-500">
+              {t("token.factions.title")}
+            </h4>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {factions.map((faction, index) => (
@@ -440,16 +442,11 @@ const Token = () => {
           {/* Collection Summary */}
           <div className="text-center">
             <div className="bg-gradient-to-r from-red-900/20 to-red-800/20 backdrop-blur-sm rounded-2xl p-8 border border-red-700">
-              <h4 className="text-2xl font-bold mb-4 text-red-500">For the OG Community</h4>
-              <p className="text-gray-300 mb-6 max-w-3xl mx-auto">
-                The Genesis Collection is crafted specifically for our original supporters who
-                believed in our vision from the beginning. Launching alongside our Alpha release,
-                these NFTs feature iconic early concept art that captures the raw creative energy of
-                Inside Dark Studio's journey into the ROM Universe.
-              </p>
+              <h4 className="text-2xl font-bold mb-4 text-red-500">{t("token.og.title")}</h4>
+              <p className="text-gray-300 mb-6 max-w-3xl mx-auto">{t("token.og.description")}</p>
               <div className="inline-flex items-center space-x-4 bg-black/50 rounded-xl p-4 border border-red-900">
                 <Crown className="w-6 h-6 text-red-500" />
-                <span className="text-white font-semibold">Alpha Launch Exclusive</span>
+                <span className="text-white font-semibold">{t("token.og.badge")}</span>
                 <Crown className="w-6 h-6 text-red-500" />
               </div>
             </div>

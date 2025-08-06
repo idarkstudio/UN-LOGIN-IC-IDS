@@ -10,22 +10,22 @@ const About = () => {
     {
       icon: <Zap className="w-8 h-8" />,
       title: t("about.highlight1"),
-      description: "Seamless interoperability across multiple blockchains",
+      description: t("about.highlight1.description"),
     },
     {
       icon: <Code className="w-8 h-8" />,
       title: t("about.highlight2"),
-      description: "Advanced SDK for Web3 game development",
+      description: t("about.highlight2.description"),
     },
     {
       icon: <Layers className="w-8 h-8" />,
       title: t("about.highlight3"),
-      description: "Real-time NFT asset streaming technology",
+      description: t("about.highlight3.description"),
     },
     {
       icon: <Gamepad2 className="w-8 h-8" />,
       title: t("about.highlight4"),
-      description: "Complete decentralization with on-chain logic",
+      description: t("about.highlight4.description"),
     },
   ];
 
@@ -57,7 +57,7 @@ const About = () => {
               <div className="absolute bottom-4 left-4 right-4">
                 <div className="bg-black/70 backdrop-blur-sm rounded-lg p-4 border border-red-900">
                   <h3 className="text-white font-semibold mb-1">Inside Dark Studio</h3>
-                  <p className="text-gray-300 text-sm">Latin America's Web3 Gaming Pioneer</p>
+                  <p className="text-gray-300 text-sm">{t("about.ids")}</p>
                 </div>
               </div>
             </div>
@@ -71,10 +71,7 @@ const About = () => {
           <div className="space-y-8">
             <div>
               <p className="text-xl text-gray-300 leading-relaxed mb-6">{t("about.description")}</p>
-              <p className="text-gray-400 leading-relaxed mb-8">
-                We combine cutting-edge blockchain technology with immersive gaming experiences,
-                creating a new paradigm for digital entertainment in Latin America and beyond.
-              </p>
+              <p className="text-gray-400 leading-relaxed mb-8">{t("about.description2")}</p>
 
               {/* Prominent About Us Button */}
               <button
@@ -104,7 +101,7 @@ const About = () => {
                   </p>
 
                   {/* Hover effect overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 to-red-800/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               ))}
             </div>
@@ -113,13 +110,9 @@ const About = () => {
             <div className="bg-gradient-to-r from-red-900/20 to-red-800/20 backdrop-blur-sm rounded-xl p-6 border border-red-700">
               <div className="flex items-center mb-4">
                 <div className="w-3 h-3 bg-red-500 rounded-full mr-3 animate-pulse" />
-                <h4 className="text-red-500 font-semibold">Our Mission</h4>
+                <h4 className="text-red-500 font-semibold">{t("about.mission")}</h4>
               </div>
-              <p className="text-gray-300 text-sm">
-                To revolutionize the gaming industry by creating truly decentralized, player-owned
-                gaming experiences that empower communities and foster innovation across Latin
-                America's vibrant gaming ecosystem.
-              </p>
+              <p className="text-gray-300 text-sm">{t("about.mission.description")}</p>
             </div>
           </div>
         </div>

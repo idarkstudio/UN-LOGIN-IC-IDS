@@ -22,92 +22,81 @@ const ROMUniverse = () => {
   const games = [
     {
       name: "Exploring Vilintrius",
-      description:
-        "2D dungeon crawler game where the player, as rick,navigates a mysterious temple, uncovering its secrets while trying to survive and escape.",
+      description: t("vilintrius.description"),
       image: "/images/vilintrius.png",
       genre: "Dungeon Crawler",
       // icon: <Sparkles className="w-6 h-6" />,
-      narrative:
-        "The gateway to understanding the deeper mysteries of the ROM Universe begins here.",
+      narrative: t("vilintrius.text"),
       color: "from-purple-500 to-indigo-700",
       ready: true,
     },
     {
       name: "The Battle for Zhion",
-      description:
-        "FPS game join the forces in the battlefield, zhion is still at war and all the factions trying to control their land, battle royale mode, and all the classic modes for this one​.",
+      description: t("tbfz.description"),
       image: "/images/tbfz.png",
       genre: "FPS",
       // icon: <Shield className="w-6 h-6" />,
-      narrative:
-        "The eternal conflict that shapes the very foundations of reality across all realms.",
+      narrative: t("tbfz.text"),
       color: "from-red-500 to-orange-700",
       ready: true,
     },
     {
       name: "BitRoyale",
-      description:
-        "Turn-based, tabletop-inspired game where slot mechanics meet tactical decision-making. Players compete in strategic rounds powered by a dynamic slot machine system that determines actions, outcomes and power-ups.",
+      description: t("bit.description"),
       image: "/images/bit.png",
       genre: "Turn-Based Strategy",
       // icon: <Zap className="w-6 h-6" />,
-      narrative: "Where the boundaries between digital and physical reality dissolve into chaos.",
+      narrative: t("bit.text"),
       color: "from-cyan-500 to-blue-700",
       ready: false,
     },
     {
       name: "The Heroes Supremacy",
-      description:
-        "MOBA style game, with a little changes of game style and a few game modes, including anrts, classic deathmatch, team deathmatch, capture the flag and a few others.",
+      description: t("ths.description"),
       image: "/images/ths.png",
       genre: "MOBA",
       // icon: <Crown className="w-6 h-6" />,
-      narrative: "The proving ground where mortals transcend their limitations to become legends.",
+      narrative: t("ths.text"),
       color: "from-yellow-500 to-amber-700",
       ready: false,
     },
     {
       name: "Vetirent Magic Cards",
-      description:
-        "Card game play with forces of the unknown and discover some new magic styles inside this cards, all the nfts from the universe are cards.​",
+      description: t("vetirent.description"),
       image: "/images/vetirent.png",
       genre: "Card Game",
       // icon: <Wand2 className="w-6 h-6" />,
-      narrative: "The ancient art of Vetirent magic, channeled through mystical card mastery.",
+      narrative: t("vetirent.text"),
       color: "from-emerald-500 to-teal-700",
       ready: false,
     },
     {
       name: "The Player Fortress",
-      description:
-        "Each player will get their own dimension where they can build anything they want and welcome their own fortress in the metaverse where everything is decided by them​.",
+      description: t("fortress.description"),
       image: "/images/fortress.png",
       genre: "Player Fortress",
       // icon: <Castle className="w-6 h-6" />,
-      narrative: "Sanctuaries of hope built to withstand the storms of an uncertain multiverse.",
+      narrative: t("fortress.text"),
       color: "from-stone-500 to-gray-700",
       ready: false,
     },
     {
       name: "The Search for Vetirents",
-      description:
-        "Turn base game, explore what happened after the great release, and try to find there manence of vetirent’s scatter around the multiverse​.",
+      description: t("vetirents.description"),
       image: "/images/vetirents.png",
-      genre: "RPGMMO",
+      genre: "RPG",
       // icon: <Search className="w-6 h-6" />,
-      narrative: "The eternal search for artifacts that bridge the gap between mortal and divine.",
+      narrative: t("vetirents.text"),
       color: "from-violet-500 to-purple-700",
       ready: false,
     },
     {
       name: "The Release of Madness",
-      description:
-        "Descend into the psychological abyss where sanity becomes currency and madness reveals hidden truths. Face the darkness within to emerge transformed.",
+      description: t("rom.description"),
       image: "/images/rom.png",
-      genre: "Psychological Horror",
+      genre: "RPGMMO",
       // icon: <Skull className="w-6 h-6" />,
-      narrative:
-        "The final revelation where all threads of the ROM Universe converge in terrifying clarity.",
+      narrative: t("rom.text"),
       color: "from-red-600 to-black",
       ready: false,
     },
@@ -138,18 +127,9 @@ const ROMUniverse = () => {
             <img src="/images/rom-universe.png" alt="ROM Universe" className="h-32 mb-8" />
           </div>
           <div className="max-w-4xl mx-auto">
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Enter a mystical multiverse where eight interconnected realms weave together the
-              fabric of existence itself. Each world tells a fragment of an eternal story, where
-              heroes rise, civilizations fall, and the very nature of reality is questioned and
-              reshaped.
-            </p>
+            <p className="text-xl text-gray-300 mb-8 leading-relaxed">{t("rom.subtitle")}</p>
             <div className="bg-gradient-to-r from-red-900/20 to-red-800/20 backdrop-blur-sm rounded-xl p-6 border border-red-700">
-              <p className="text-lg text-gray-200 italic">
-                "In the ROM Universe, every choice echoes across dimensions, every victory reshapes
-                destiny, and every player becomes part of a legend that transcends the boundaries of
-                individual games."
-              </p>
+              <p className="text-lg text-gray-200 italic">"{t("rom.quote")}"</p>
             </div>
           </div>
         </div>
@@ -175,7 +155,7 @@ const ROMUniverse = () => {
                         className="w-full h-80 object-contain transition-transform duration-500 group-hover:scale-110"
                       />
                       <div
-                        className={`absolute inset-0 bg-gradient-to-t ${games[currentGame].color} opacity-10 group-hover:opacity-10 transition-opacity duration-300`}
+                        className={`absolute inset-0 bg-gradient-to-t ${games[currentGame].color} opacity-0 group-hover:opacity-0 transition-opacity duration-300`}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
@@ -220,14 +200,17 @@ const ROMUniverse = () => {
                       <p className="text-gray-300 italic">{games[currentGame].narrative}</p>
                     </div>
 
-                    <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-600 to-red-800 text-white rounded-xl hover:from-red-700 hover:to-red-900 transition-all duration-300 transform hover:scale-105 hover:shadow-red-glow border border-red-500 hover:border-red-400 font-semibold">
+                    <button
+                      className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-600 to-red-800 text-white rounded-xl hover:from-red-700 hover:to-red-900 transition-all duration-300 transform hover:scale-105 hover:shadow-red-glow border border-red-500 hover:border-red-400 font-semibold disabled:opacity-50 disabled:hover:scale-100 disabled:hover:shadow-none"
+                      disabled={!games[currentGame].ready}
+                    >
                       {games[currentGame].ready ? (
                         <>
-                          Discover This Realm
+                          {t("btn.ready")}
                           <ExternalLink className="ml-3 w-5 h-5" />
                         </>
                       ) : (
-                        "Coming Soon"
+                        <>{t("btn.coming")}</>
                       )}
                     </button>
                   </div>
@@ -263,13 +246,9 @@ const ROMUniverse = () => {
         <div className="mb-16">
           <div className="text-center mb-12">
             <h3 className="text-2xl sm:text-3xl font-bold mb-4 text-red-500">
-              The Interconnected Multiverse
+              {t("multiverse.title")}
             </h3>
-            <p className="text-gray-300 max-w-3xl mx-auto">
-              Each realm exists as both a standalone epic and an integral part of a greater cosmic
-              narrative. Characters, artifacts, and consequences flow between worlds, creating an
-              ever-evolving tapestry of legend.
-            </p>
+            <p className="text-gray-300 max-w-3xl mx-auto">{t("multiverse.description")}</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -290,9 +269,8 @@ const ROMUniverse = () => {
                     className="w-full h-40 object-contain transition-transform duration-300 group-hover:scale-110"
                   />
                   <div
-                    className={`absolute inset-0 bg-gradient-to-t ${game.color} opacity-10 group-hover:opacity-10 transition-opacity duration-300`}
+                    className={`absolute inset-0 ${game.color} opacity-0 group-hover:opacity-0 transition-opacity duration-300`}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
 
                   {/* Game icon */}
                   {/* <div className="absolute top-3 left-3">
@@ -335,14 +313,9 @@ const ROMUniverse = () => {
         <div className="text-center">
           <div className="bg-gradient-to-r from-red-900/20 to-red-800/20 backdrop-blur-sm rounded-2xl p-12 border border-red-700">
             <div className="max-w-4xl mx-auto">
-              <h3 className="text-3xl font-bold mb-6 text-red-500">The Eternal Cycle</h3>
+              <h3 className="text-3xl font-bold mb-6 text-red-500">{t("bigcard.title")}</h3>
               <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                In the ROM Universe, every ending marks a new beginning, every defeat plants the
-                seeds of future triumph, and every journey expands a living mythology. The
-                Vetirents—an ancient race of unimaginable power—act as the silent architects of
-                destiny, weaving together realms and timelines. Their legacy—through relics,
-                knowledge, and forgotten truths—echoes across every dimension, every battle, every
-                quest for meaning.
+                {t("bigcard.description")}
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
@@ -350,43 +323,29 @@ const ROMUniverse = () => {
                   <div className="w-16 h-16 bg-gradient-to-r from-red-600 to-red-800 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Sparkles className="w-8 h-8 text-white" />
                   </div>
-                  <h4 className="text-xl font-semibold text-white mb-2">Mystical Connections</h4>
-                  <p className="text-gray-400 text-sm">
-                    Your NFTs transcend individual games. Whether characters, relics, or
-                    achievements, they carry over across all ROM experiences—your legend lives on,
-                    no matter the world you enter.
-                  </p>
+                  <h4 className="text-xl font-semibold text-white mb-2">{t("bigcard.1.title")}</h4>
+                  <p className="text-gray-400 text-sm">{t("bigcard.1.description")}</p>
                 </div>
 
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-red-600 to-red-800 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Crown className="w-8 h-8 text-white" />
                   </div>
-                  <h4 className="text-xl font-semibold text-white mb-2">Forgotten Relics</h4>
-                  <p className="text-gray-400 text-sm">
-                    The artifacts left behind by the Vetirents are more than ancient treasures. They
-                    hold fragments of primal knowledge, keys to unlocking the hidden truths of the
-                    ROM Universe.
-                  </p>
+                  <h4 className="text-xl font-semibold text-white mb-2">{t("bigcard.2.title")}</h4>
+                  <p className="text-gray-400 text-sm">{t("bigcard.2.description")}</p>
                 </div>
 
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-red-600 to-red-800 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Zap className="w-8 h-8 text-white" />
                   </div>
-                  <h4 className="text-xl font-semibold text-white mb-2">Evolving Narrative</h4>
-                  <p className="text-gray-400 text-sm">
-                    Every choice you make ripples through time. Your actions shape not just one
-                    story, but the evolving destiny of an entire multiverse built around you.
-                  </p>
+                  <h4 className="text-xl font-semibold text-white mb-2">{t("bigcard.3.title")}</h4>
+                  <p className="text-gray-400 text-sm">{t("bigcard.3.description")}</p>
                 </div>
               </div>
 
               <div className="bg-black/50 backdrop-blur-sm rounded-xl p-8 border border-red-900">
-                <p className="text-xl text-gray-200 italic font-medium">
-                  "Step into the ROM Universe, where your legend begins not with a single game, but
-                  with your first choice in an infinite tapestry of interconnected destinies."
-                </p>
+                <p className="text-xl text-gray-200 italic font-medium">"{t("bigcard.quote")}"</p>
               </div>
             </div>
           </div>

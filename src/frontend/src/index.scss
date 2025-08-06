@@ -297,9 +297,10 @@ nav button:hover {
   background-size: 400% 400%;
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  // -webkit-text-fill-color: transparent;
   animation: mystical-entrance 3s ease-out forwards, mystical-glow-pulse 4s ease-in-out infinite 3s,
     gradient-shift 8s ease-in-out infinite 3s;
+  text-shadow: 12px 16px 20px #ff0000 !important;
 }
 
 @keyframes gradient-shift {
@@ -685,7 +686,7 @@ select:focus {
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;
-    text-shadow: 0 0 20px rgba(239, 68, 68, 0.9), 0 0 40px rgba(255, 255, 255, 0.7);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 1);
   }
 }
 
