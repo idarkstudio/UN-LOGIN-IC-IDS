@@ -152,7 +152,9 @@ const ROMUniverse = () => {
                       <img
                         src={games[currentGame].image}
                         alt={games[currentGame].name}
-                        className="w-full h-80 object-contain transition-transform duration-500 group-hover:scale-110"
+                        className={`w-full h-80 ${
+                          games[currentGame].name === "Exploring Vilintrius" ? "py-10" : ""
+                        } object-contain transition-transform duration-500 group-hover:scale-110`}
                       />
                       <div
                         className={`absolute inset-0 bg-gradient-to-t ${games[currentGame].color} opacity-0 group-hover:opacity-0 transition-opacity duration-300`}
@@ -255,21 +257,23 @@ const ROMUniverse = () => {
             {games.map((game, index) => (
               <div
                 key={index}
-                className={`group relative bg-gray-900/50 backdrop-blur-sm rounded-xl overflow-hidden border transition-all duration-300 transform hover:scale-105 cursor-pointer hover:shadow-red-glow ${
+                className={`group flex flex-col justify-between relative bg-gray-900/50 backdrop-blur-sm rounded-xl overflow-hidden border transition-all duration-300 transform hover:scale-105 cursor-pointer hover:shadow-red-glow ${
                   index === currentGame
                     ? "border-red-500 shadow-lg shadow-red-500/25"
                     : "border-red-900 hover:border-red-400"
                 }`}
                 onClick={() => setCurrentGame(index)}
               >
-                <div className="relative">
+                <div className="relative h-full grid place-items-center">
                   <img
                     src={game.image}
                     alt={game.name}
-                    className="w-full h-40 object-contain transition-transform duration-300 group-hover:scale-110"
+                    className={`w-full ${
+                      game.name === "Exploring Vilintrius" ? "h-32" : "h-40"
+                    } object-contain transition-transform duration-300 group-hover:scale-110`}
                   />
                   <div
-                    className={`absolute inset-0 ${game.color} opacity-0 group-hover:opacity-0 transition-opacity duration-300`}
+                    className={`absolute inset-0 ${game.color} h-full opacity-0 group-hover:opacity-0 transition-opacity duration-300`}
                   />
 
                   {/* Game icon */}
