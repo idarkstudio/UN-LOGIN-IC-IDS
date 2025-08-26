@@ -1,61 +1,225 @@
-# `ids-website`
+# UN-LOGIN-IC-IDS
 
-Welcome to your new `ids-website` project and to the Internet Computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+Canister for **login** and **communication bridge** between the **WSS proxy** (receiving connections from the **Unreal Engine client**) and the rest of Inside Dark Studio's infrastructure on the **Internet Computer (IC)**.  
+This repository was originally created from the `dfx new` template (ids-website). This README reorganizes the project and documents the **architecture**, **components**, **interfaces**, and the **development & deployment flow**.
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+---
 
-To learn more before you start working with `ids-website`, see the following documentation available online:
+## 📦 Canister Purpose
 
-- [Quick Start](https://internetcomputer.org/docs/current/developer-docs/setup/deploy-locally)
-- [SDK Developer Tools](https://internetcomputer.org/docs/current/developer-docs/setup/install)
-- [Motoko Programming Language Guide](https://internetcomputer.org/docs/current/motoko/main/motoko)
-- [Motoko Language Quick Reference](https://internetcomputer.org/docs/current/motoko/main/language-manual)
+- Manage **identity and session** for players/partners.
+- Persist **user profiles** and **session tokens** in a **Motoko-based database**.
+- Provide a **Candid API** consumable by:
+  - **WSS Proxy** connected to Unreal.
+  - **Front End web** (login flows, dashboards, landing).
+  - Other **canisters** (Marketplace, Chat, Auction House, etc.).
+- Sign and forward messages to **IC services** and **Web2 services** (dockers) according to policies.
 
-If you want to start working on your project right away, you might want to try the following commands:
+---
 
-```bash
-cd ids-website/
-dfx help
-dfx canister --help
+## 🧱 High-Level Architecture
+
+![Architecture](docs/architecture.png)
+
+**Main components**:
+
+1. **Game Client (Unreal)** → connects to the **WSS Proxy**.
+2. **WSS Proxy** → normalizes messages, applies rate-limit and retries; calls **UN-LOGIN-IC-IDS canister** via `ic-agent`.
+3. **UN-LOGIN-IC-IDS (this repo)** →
+   - Authentication (delegations / sessions).
+   - Profile and account links (principal, anonymous, wallet, partnerId).
+   - Issuance/validation of **ephemeral tokens** for Game Services.
+   - Hooks/calls to other canisters (Marketplace, Chat, Auction House, ODC Forge, etc.).
+4. **Canister Lobby / Front End** → public UI and dashboards; consumes the canister’s API.
+5. **Web2 Services (Dockers)** → batch/ingestion/analytics (with **Origin Digital Certificate** when crossing to Web2).
+
+> The login canister is the **entry point** to the ROM Universe service mesh on IC.
+
+---
+
+## 🗂️ Suggested Repo Structure
+
+```
+/src
+  /un_login_ic_ids
+    Main.mo               # Main canister logic
+    types.mo              # Types, errors, DTOs
+    storage.mo            # Persistence layer (stable vars / trie / hashmap)
+    auth.mo               # Session, tokens, delegations
+    wss_bridge.mo         # Adapters for WSS proxy messages
+/idl
+  un_login_ic_ids.did     # Candid interface
+/docs
+  architecture.png        # Architecture diagram (this file)
+/scripts
+  deploy_local.sh
+  deploy_ic.sh
+dfx.json
+package.json
+README.md
 ```
 
-## Running the project locally
+---
 
-If you want to test your project locally, you can use the following commands:
+## 🔐 Data Model (Motoko)
+
+```motoko
+// src/un_login_ic_ids/types.mo
+import Principal "mo:base/Principal";
+import Time "mo:base/Time";
+
+module {
+  public type UserId = Principal;
+  public type SessionId = Text;
+  public type PartnerId = Text;
+
+  public type UserProfile = {
+    id: UserId;
+    createdAt: Time.Time;
+    updatedAt: Time.Time;
+    nickname: ?Text;
+    email: ?Text;
+    wallets: [Text];        // links to EVM/ICP/others
+    partner: ?PartnerId;    // B2B integrations
+    flags: Nat;             // bitmask (ban, beta, etc.)
+  };
+
+  public type Session = {
+    sid: SessionId;
+    uid: UserId;
+    issuedAt: Time.Time;
+    expiresAt: Time.Time;
+    scopes: [Text];         // e.g. ["market:read", "chat:send"]
+  };
+
+  public type LoginToken = {
+    value: Text;            // uuid/base64
+    expiresAt: Time.Time;
+  };
+
+  public type Result<T> = { #ok : T; #err : Text };
+}
+```
+
+---
+
+## 🧾 Candid Interface (excerpt)
+
+```candid
+// idl/un_login_ic_ids.did
+type Session   = record { sid: text; uid: principal; issuedAt: nat64; expiresAt: nat64; scopes: vec text; };
+type Profile   = record { id: principal; nickname: opt text; email: opt text; wallets: vec text; partner: opt text; flags: nat; createdAt: nat64; updatedAt: nat64; };
+type LoginToken= record { value: text; expiresAt: nat64; };
+type Result<T> = variant { ok: T; err: text };
+
+service : {
+  // Exchange with WSS Proxy / Front End
+  request_login_token : (principal) -> (Result<LoginToken>);
+  redeem_login_token  : (text)       -> (Result<Session>);
+  refresh_session     : (text)       -> (Result<Session>);
+  end_session         : (text)       -> (Result<bool>);
+
+  // Profile management
+  get_profile         : (principal)  -> (Result<Profile>);
+  upsert_profile      : (Profile)    -> (Result<Profile>);
+
+  // Integration with other canisters
+  grant_scope         : (text, vec text) -> (Result<Session>);
+  validate_scope      : (text, text)     -> (Result<bool>);
+}
+```
+
+> **Typical flow**: Unreal → WSS Proxy → `request_login_token` → returns `LoginToken` → client redeems with `redeem_login_token` → obtains `Session` → uses `sid` to call other services.
+
+---
+
+## 🔄 Authentication Flow (summary)
+
+1. **Handshake Unreal ↔ WSS Proxy** (client/game signature).
+2. **Proxy → Canister** `request_login_token(principal)`.
+3. Player receives `LoginToken` and redeems it (`redeem_login_token`) from Front End or directly in-game.
+4. A **Session** is created with minimal **scopes**; other services request `validate_scope`.
+5. Renewal (`refresh_session`) or termination (`end_session`).
+
+---
+
+## 🧪 Local Development
 
 ```bash
-# Starts the replica, running in the background
+# 1) Local replica
 dfx start --background
 
-# Deploys your canisters to the replica and generates your candid interface
+# 2) Deploy
 dfx deploy
-```
 
-Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`.
-
-If you have made changes to your backend canister, you can generate a new candid interface with
-
-```bash
+# 3) (Optional) Generate Candid/TS declarations
 npm run generate
+
+# 4) Frontend dev (if applicable)
+npm start  # http://localhost:8080 (proxy to 4943)
 ```
 
-at any time. This is recommended before starting the frontend development server, and will be run automatically any time you run `dfx deploy`.
+### Frontend environment variables (without DFX)
+- Set `DFX_NETWORK=ic` for production builds.
+- Or use `dfx.json` → `canisters -> {asset_canister_id} -> declarations -> env_override`.
 
-If you are making frontend changes, you can start a development server with
+---
+
+## 🚀 Deployment to Mainnet (IC)
 
 ```bash
-npm start
+# Ensure identities and cycles
+dfx identity use <your-identity>
+dfx deploy --network ic
 ```
 
-Which will start a server at `http://localhost:8080`, proxying API requests to the replica at port 4943.
+- Define **roles** (controller vs. custodian).
+- Supply **cycles** and **stable upgrade policies**.
+- Keep `--upgrade-unchanged` and migration tests for `stable vars`.
 
-### Note on frontend environment variables
+---
 
-If you are hosting frontend code somewhere without using DFX, you may need to make one of the following adjustments to ensure your project does not fetch the root key in production:
+## 🛡️ Security & Compliance
 
-- set`DFX_NETWORK` to `ic` if you are using Webpack
-- use your own preferred method to replace `process.env.DFX_NETWORK` in the autogenerated declarations
-  - Setting `canisters -> {asset_canister_id} -> declarations -> env_override to a string` in `dfx.json` will replace `process.env.DFX_NETWORK` with the string in the autogenerated declarations
-- Write your own `createActor` constructor
+- **Ephemeral tokens** with short expiration by default.
+- **Granular scopes** for least privilege.
+- **Rate-limiting** and retries in the WSS Proxy.
+- **Origin/Host validation** for Web2 calls with **ODC**.
+- Audit logs for sensitive actions.
 
-d3aaea4b12f0b4cfbb55cd911fc1ebacd6d191e9cc5ad21bd3dd002931eec6d4
+---
+
+## 📈 Scalability
+
+- Separation of **hot state** (sessions) vs **profile persistence**.
+- Partitioning by **userId** if canister sharding is needed.
+- Integration with **auto-scale canister clusters** (see diagram).
+- Backpressure and idempotent queues at the Proxy.
+
+---
+
+## 🗺️ Short-Term Roadmap
+
+- [ ] Multi-chain **wallet linking** endpoint.
+- [ ] Native IC **delegations** for web front ends.
+- [ ] WebAuthn / Passkeys.
+- [ ] Export **events** to analytics (dockers).
+
+---
+
+## 🔎 Useful References
+
+- IC Quick Start
+- SDK Developer Tools – dfx
+- Motoko Guide & Quick Reference
+
+---
+
+## Previous Repo Reference Hash
+
+`d3aaea4b12f0b4cfbb55cd911fc1ebacd6d191e9cc5ad21bd3dd002931eec6d4`
+
+---
+
+> **Note**: This README is a living document. Feel free to open issues to discuss the Candid contract, session policy, and Proxy WSS flows.
+
