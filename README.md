@@ -223,3 +223,11 @@ dfx deploy --network ic
 
 > **Note**: This README is a living document. Feel free to open issues to discuss the Candid contract, session policy, and Proxy WSS flows.
 
+---
+
+## 🔗 Useful Links
+- 🌐 [Inside Dark Studio](https://insidedarkstudio.com)
+- 🎮 [Reality of Madness](https://realityofmadness.com)
+- 📚 [Documentation Portal](https://docs.realityofmadness.com)
+
+---
