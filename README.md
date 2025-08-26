@@ -1,6 +1,6 @@
 # UN-LOGIN-IC-IDS
 
-Canister for **login** and **communication bridge** between the **WSS proxy** (receiving connections from the **Unreal Engine client**) and the rest of Inside Dark Studio's infrastructure on the **Internet Computer (IC)**.  
+Canister for **login** and **communication bridge** between the **WSS proxy** (receiving connections from the **Unreal Engine client**) and the rest of Reality of Madness's infrastructure on the **Internet Computer (IC)**.  
 This repository was originally created from the `dfx new` template (ids-website). This README reorganizes the project and documents the **architecture**, **components**, **interfaces**, and the **development & deployment flow**.
 
 ---
