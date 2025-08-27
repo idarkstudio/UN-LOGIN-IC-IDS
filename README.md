@@ -1,16 +1,24 @@
 # UN-LOGIN-IC-IDS
 
-Canister for **login** and **communication bridge** between the **WSS proxy** (receiving connections from the **Unreal Engine client**) and the rest of Reality of Madness's infrastructure on the **Internet Computer (IC)**.  
+Canister for **login** and **direct communication** with the **Unreal Engine client** and the rest of Reality of Madness's infrastructure on the **Internet Computer (IC)**.  
+Communication happens via **HTTPS calls** directly to the canister (no proxy).  
 This repository was originally created from the `dfx new` template (ids-website). This README reorganizes the project and documents the **architecture**, **components**, **interfaces**, and the **development & deployment flow**.
+
+---
+
+## 🔗 Useful Links
+- 🌐 [Inside Dark Studio](https://insidedarkstudio.com)
+- 🎮 [Reality of Madness](https://realityofmadness.com)
+- 📚 [Documentation Portal](https://docs.realityofmadness.com)
 
 ---
 
 ## 📦 Canister Purpose
 
 - Manage **identity and session** for players/partners.
-- Persist **user profiles** and **session tokens** in a **Motoko-based database**.
+- Persist **user profiles**, **session tokens**, and **read all assets owned by the player** (including **NFTs and fungible tokens**).
 - Provide a **Candid API** consumable by:
-  - **WSS Proxy** connected to Unreal.
+  - **Unreal Engine client** via HTTPS.
   - **Front End web** (login flows, dashboards, landing).
   - Other **canisters** (Marketplace, Chat, Auction House, etc.).
 - Sign and forward messages to **IC services** and **Web2 services** (dockers) according to policies.
@@ -19,19 +27,19 @@ This repository was originally created from the `dfx new` template (ids-website)
 
 ## 🧱 High-Level Architecture
 
-![Architecture](docs/architecture.png)
+[![Architecture](docs/architecture.png)](docs/architecture.png)
 
 **Main components**:
 
-1. **Game Client (Unreal)** → connects to the **WSS Proxy**.
-2. **WSS Proxy** → normalizes messages, applies rate-limit and retries; calls **UN-LOGIN-IC-IDS canister** via `ic-agent`.
-3. **UN-LOGIN-IC-IDS (this repo)** →
+1. **Game Client (Unreal)** → sends **HTTPS calls** directly to the **UN-LOGIN-IC-IDS canister**.
+2. **UN-LOGIN-IC-IDS (this repo)** →
    - Authentication (delegations / sessions).
    - Profile and account links (principal, anonymous, wallet, partnerId).
+   - **Retrieves all player-owned assets (NFTs, tokens) for use across the ecosystem.**
    - Issuance/validation of **ephemeral tokens** for Game Services.
    - Hooks/calls to other canisters (Marketplace, Chat, Auction House, ODC Forge, etc.).
-4. **Canister Lobby / Front End** → public UI and dashboards; consumes the canister’s API.
-5. **Web2 Services (Dockers)** → batch/ingestion/analytics (with **Origin Digital Certificate** when crossing to Web2).
+3. **Canister Lobby / Front End** → public UI and dashboards; consumes the canister’s API.
+4. **Web2 Services (Dockers)** → batch/ingestion/analytics (with **Origin Digital Certificate** when crossing to Web2).
 
 > The login canister is the **entry point** to the ROM Universe service mesh on IC.
 
@@ -46,7 +54,6 @@ This repository was originally created from the `dfx new` template (ids-website)
     types.mo              # Types, errors, DTOs
     storage.mo            # Persistence layer (stable vars / trie / hashmap)
     auth.mo               # Session, tokens, delegations
-    wss_bridge.mo         # Adapters for WSS proxy messages
 /idl
   un_login_ic_ids.did     # Candid interface
 /docs
@@ -113,13 +120,13 @@ type LoginToken= record { value: text; expiresAt: nat64; };
 type Result<T> = variant { ok: T; err: text };
 
 service : {
-  // Exchange with WSS Proxy / Front End
+  // Exchange with Unreal client / Front End
   request_login_token : (principal) -> (Result<LoginToken>);
   redeem_login_token  : (text)       -> (Result<Session>);
   refresh_session     : (text)       -> (Result<Session>);
   end_session         : (text)       -> (Result<bool>);
 
-  // Profile management
+  // Profile management & assets retrieval
   get_profile         : (principal)  -> (Result<Profile>);
   upsert_profile      : (Profile)    -> (Result<Profile>);
 
@@ -129,17 +136,17 @@ service : {
 }
 ```
 
-> **Typical flow**: Unreal → WSS Proxy → `request_login_token` → returns `LoginToken` → client redeems with `redeem_login_token` → obtains `Session` → uses `sid` to call other services.
+> **Typical flow**: Unreal → HTTPS call → `request_login_token` → returns `LoginToken` → client redeems with `redeem_login_token` → obtains `Session` → uses `sid` to call other services and query owned assets (NFTs/tokens).
 
 ---
 
 ## 🔄 Authentication Flow (summary)
 
-1. **Handshake Unreal ↔ WSS Proxy** (client/game signature).
-2. **Proxy → Canister** `request_login_token(principal)`.
-3. Player receives `LoginToken` and redeems it (`redeem_login_token`) from Front End or directly in-game.
-4. A **Session** is created with minimal **scopes**; other services request `validate_scope`.
-5. Renewal (`refresh_session`) or termination (`end_session`).
+1. **Direct HTTPS call from Unreal client** to `request_login_token(principal)`.
+2. Player receives `LoginToken` and redeems it (`redeem_login_token`) from Front End or directly in-game.
+3. A **Session** is created with minimal **scopes**; other services request `validate_scope`.
+4. Renewal (`refresh_session`) or termination (`end_session`).
+5. **During the session, the canister can fetch and return all assets (NFTs and tokens) tied to the player.**
 
 ---
 
@@ -183,7 +190,7 @@ dfx deploy --network ic
 
 - **Ephemeral tokens** with short expiration by default.
 - **Granular scopes** for least privilege.
-- **Rate-limiting** and retries in the WSS Proxy.
+- **Rate-limiting and validation** handled directly in the canister over HTTPS.
 - **Origin/Host validation** for Web2 calls with **ODC**.
 - Audit logs for sensitive actions.
 
@@ -194,7 +201,7 @@ dfx deploy --network ic
 - Separation of **hot state** (sessions) vs **profile persistence**.
 - Partitioning by **userId** if canister sharding is needed.
 - Integration with **auto-scale canister clusters** (see diagram).
-- Backpressure and idempotent queues at the Proxy.
+- Backpressure and idempotent queues handled internally.
 
 ---
 
@@ -204,6 +211,7 @@ dfx deploy --network ic
 - [ ] Native IC **delegations** for web front ends.
 - [ ] WebAuthn / Passkeys.
 - [ ] Export **events** to analytics (dockers).
+- [ ] Enhanced **asset querying API** for NFTs and tokens.
 
 ---
 
@@ -221,13 +229,5 @@ dfx deploy --network ic
 
 ---
 
-> **Note**: This README is a living document. Feel free to open issues to discuss the Candid contract, session policy, and Proxy WSS flows.
+> **Note**: This README is a living document. Feel free to open issues to discuss the Candid contract, session policy, and HTTPS flows.
 
----
-
-## 🔗 Useful Links
-- 🌐 [Inside Dark Studio](https://insidedarkstudio.com)
-- 🎮 [Reality of Madness](https://realityofmadness.com)
-- 📚 [Documentation Portal](https://docs.realityofmadness.com)
-
----
